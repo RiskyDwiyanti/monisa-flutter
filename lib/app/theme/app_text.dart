@@ -38,4 +38,10 @@ class AppText {
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
+
+  static TextStyle Body2 = GoogleFonts.manrope(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
 }
