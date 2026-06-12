@@ -182,7 +182,7 @@ class HomeView extends GetView<HomeController> {
                   Container(
                     width: 18,
                     decoration: BoxDecoration(
-                      color: AppColors.Primary,
+                      color: AppColors.Tangerine,
                       border: Border(
                         right: BorderSide(
                           color: AppColors.black,

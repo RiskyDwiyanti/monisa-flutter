@@ -10,6 +10,8 @@ abstract class Routes {
   static const CLASS = _Paths.STUDENT + _Paths.CLASS;
   static const PRESENCE = _Paths.STUDENT + _Paths.PRESENCE;
   static const PROFILE = _Paths.STUDENT + _Paths.PROFILE;
+  static const QR_SHARING = _Paths.STUDENT + _Paths.QR_SHARING;
+  static const SCAN_QR = _Paths.STUDENT + _Paths.SCAN_QR;
 }
 
 abstract class _Paths {
@@ -23,4 +25,6 @@ abstract class _Paths {
   static const CLASS = '/class';
   static const PRESENCE = '/presence';
   static const PROFILE = '/profile';
+  static const QR_SHARING = '/qr-sharing';
+  static const SCAN_QR = '/scan-qr';
 }

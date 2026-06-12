@@ -90,7 +90,7 @@ class SigninView extends GetView<SigninController> {
                             height: 46,
                             child: Obx(() => ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.Primary,
+                                backgroundColor: AppColors.Tangerine,
                                 foregroundColor: AppColors.black,
                                 disabledBackgroundColor: AppColors.black,
                                 shape: RoundedRectangleBorder(

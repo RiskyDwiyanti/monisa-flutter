@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   // kalender
   final focusedMonth = DateTime(2026, 5).obs;
   final Map<DateTime, String> attendanceStatus = {
-    DateTime(2026, 5, 1): 'Libur',
+    // DateTime(2026, 5, 1): 'Libur',
     DateTime(2026, 5, 4): 'hadir',
     DateTime(2026, 5, 5): 'hadir',
     DateTime(2026, 5, 6): 'hadir',

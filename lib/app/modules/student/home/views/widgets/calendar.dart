@@ -221,7 +221,7 @@ class _CalendarState extends State<Calendar> {
       bgColor = AppColors.Electric;
       textColor = Colors.white;
     } else if (status == 'sakit') {
-      bgColor = AppColors.Primary;
+      bgColor = AppColors.Tangerine;
       textColor = Colors.white;
     } else if (status == 'izin') {
       bgColor = AppColors.Sky;

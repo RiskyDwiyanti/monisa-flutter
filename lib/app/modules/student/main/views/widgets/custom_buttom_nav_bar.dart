@@ -36,7 +36,7 @@ class CustomButtomNavBar extends GetView<MainController> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
-                  color: AppColors.Primary,
+                  color: AppColors.Tangerine,
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: AppColors.black, width: 1),
                 ),
