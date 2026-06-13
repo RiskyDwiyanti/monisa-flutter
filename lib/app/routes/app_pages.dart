@@ -8,6 +8,8 @@ import '../modules/student/class/bindings/class_binding.dart';
 import '../modules/student/class/views/class_view.dart';
 import '../modules/student/home/bindings/home_binding.dart';
 import '../modules/student/home/views/home_view.dart';
+import '../modules/student/kelas_selected/bindings/kelas_selected_binding.dart';
+import '../modules/student/kelas_selected/views/kelas_selected_view.dart';
 import '../modules/student/main/bindings/main_binding.dart';
 import '../modules/student/main/views/main_view.dart';
 import '../modules/student/presence/bindings/presence_binding.dart';
@@ -18,6 +20,8 @@ import '../modules/student/qr_sharing/bindings/qr_sharing_binding.dart';
 import '../modules/student/qr_sharing/views/qr_sharing_view.dart';
 import '../modules/student/scan_qr/bindings/scan_qr_binding.dart';
 import '../modules/student/scan_qr/views/scan_qr_view.dart';
+import '../modules/student/tugas/bindings/tugas_binding.dart';
+import '../modules/student/tugas/views/tugas_view.dart';
 
 part 'app_routes.dart';
 
@@ -71,6 +75,16 @@ class AppPages {
       name: Routes.SCAN_QR,
       page: () => const ScanQrView(),
       binding: ScanQrBinding(),
+    ),
+    GetPage(
+      name: Routes.TUGAS,
+      page: () => const TugasView(),
+      binding: TugasBinding(),
+    ),
+    GetPage(
+      name: Routes.KELAS_SELECTED,
+      page: () => const KelasSelectedView(),
+      binding: KelasSelectedBinding(),
     ),
   ];
 }

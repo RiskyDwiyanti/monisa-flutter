@@ -43,7 +43,7 @@ class TugasCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
               decoration: BoxDecoration(
-                color: bgColor, // ✅ warna di bagian atas saja
+                color: bgColor, 
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(14),
                   topRight: Radius.circular(14),

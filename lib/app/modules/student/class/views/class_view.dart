@@ -45,7 +45,9 @@ class ClassView extends GetView<ClassController> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.TUGAS);
+                  },
                   child: SvgPicture.asset(
                     'assets/icons/list_icon.svg',
                     width: 22,
@@ -87,7 +89,14 @@ class ClassView extends GetView<ClassController> {
           namaGuru: item.namaGuru,
           fotoGuru: item.fotoGuru,
           bgColor: item.bgColor,
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(Routes.KELAS_SELECTED, arguments: {
+              'mapel': item.mapel,
+              'kelas': item.kelas,
+              'tahunAjaran': item.tahunAjaran,
+              'bgColor': item.bgColor,
+            });
+          },
           onQrTap: () {
             Get.toNamed(Routes.QR_SHARING, arguments: {
               'mapel': item.mapel,
