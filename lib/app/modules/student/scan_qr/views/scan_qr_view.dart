@@ -39,7 +39,7 @@ class ScanQrView extends GetView<ScanQrController> {
           const SizedBox(width: 12),
           Text(
             'Scan QR',
-            style: AppText.Heading1.copyWith(color: AppColors.white),
+            style: AppText.Header1.copyWith(color: AppColors.white),
           ),
         ],
       ),
@@ -94,15 +94,4 @@ class ScanQrView extends GetView<ScanQrController> {
     );
   }
 
-   Widget _buildScannerOverlay() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: AppColors.Butter,
-          width: 3,
-        ),
-        borderRadius: BorderRadius.circular(11),
-      ),
-    );
-  }
 }

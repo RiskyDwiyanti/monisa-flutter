@@ -14,6 +14,7 @@ abstract class Routes {
   static const SCAN_QR = _Paths.STUDENT + _Paths.SCAN_QR;
   static const TUGAS = _Paths.STUDENT + _Paths.TUGAS;
   static const KELAS_SELECTED = _Paths.STUDENT + _Paths.KELAS_SELECTED;
+  static const DETAIL_TUGAS = _Paths.STUDENT + _Paths.DETAIL_TUGAS;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const SCAN_QR = '/scan-qr';
   static const TUGAS = '/tugas';
   static const KELAS_SELECTED = '/kelas-selected';
+  static const DETAIL_TUGAS = '/detail-tugas';
 }

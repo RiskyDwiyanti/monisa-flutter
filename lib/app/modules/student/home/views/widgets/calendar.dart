@@ -87,7 +87,7 @@ class _CalendarState extends State<Calendar> {
               children: [
                 Text(
                   '${_monthName(month)} $year',
-                  style: AppText.Heading2.copyWith(color: AppColors.white),
+                  style: AppText.Header2.copyWith(color: AppColors.white),
                 ),
                 Row(
                   children: [

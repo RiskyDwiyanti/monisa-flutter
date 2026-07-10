@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 
 class AppText {
-  static TextStyle Heading1 = GoogleFonts.calSans(
+  static TextStyle Header1 = GoogleFonts.calSans(
     fontSize: 26,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
 
-  static TextStyle Heading2 = GoogleFonts.calSans(
+  static TextStyle Header2 = GoogleFonts.calSans(
     fontSize: 20,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
@@ -35,6 +35,12 @@ class AppText {
 
   static TextStyle Body = GoogleFonts.manrope(
     fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
+
+  static TextStyle Body1 = GoogleFonts.manrope(
+    fontSize: 15,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );

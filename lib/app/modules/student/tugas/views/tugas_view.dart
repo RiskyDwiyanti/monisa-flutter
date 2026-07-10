@@ -41,7 +41,7 @@ class TugasView extends GetView<TugasController> {
           const SizedBox(width: 12),
           Text(
             'Daftar Tugas',
-            style: AppText.Heading1,
+            style: AppText.Header1,
           ),
         ],
       ),

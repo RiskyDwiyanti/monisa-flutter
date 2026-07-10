@@ -101,7 +101,7 @@ class KelasCard extends StatelessWidget {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(mataPelajaran,
-                                            style: AppText.Heading2
+                                            style: AppText.Header2
                                                 .copyWith(color: _textColor)),
                                         const SizedBox(height: 2),
                                         Text(

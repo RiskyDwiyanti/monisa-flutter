@@ -48,7 +48,7 @@ class QrSharingView extends GetView<QrSharingController> {
           const SizedBox(width: 12),
           Text(
             'QR Sharing',
-            style: AppText.Heading1.copyWith(color: AppColors.white),
+            style: AppText.Header1.copyWith(color: AppColors.white),
           ),
         ],
       ),
@@ -104,7 +104,7 @@ class QrSharingView extends GetView<QrSharingController> {
                     children: [
                         Text(
                           controller.mapel,
-                          style: AppText.Heading1,
+                          style: AppText.Header1,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 4),

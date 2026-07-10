@@ -35,7 +35,7 @@ class KelasSelectedView extends GetView<KelasSelectedController> {
             child: Icon(Icons.arrow_back, color: AppColors.black),
           ),
           const SizedBox(width: 12),
-          Text(controller.mapel, style: AppText.Heading1),
+          Text(controller.mapel, style: AppText.Header1),
           const Spacer(),
           GestureDetector(
             onTap: () {
@@ -86,7 +86,7 @@ class KelasSelectedView extends GetView<KelasSelectedController> {
             ),
             child: Text(
               group.title,
-              style: AppText.Heading2.copyWith(color: AppColors.white),
+              style: AppText.Header2.copyWith(color: AppColors.white),
             ),
           ),
 

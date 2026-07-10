@@ -50,7 +50,7 @@ class SigninView extends GetView<SigninController> {
                     // Title
                     Text(
                       'Selamat Datang!',
-                      style: AppText.Heading1,
+                      style: AppText.Header1,
                     ),
 
                     const SizedBox(height: 8,),

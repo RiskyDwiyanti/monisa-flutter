@@ -70,7 +70,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             Obx(() => Text(
                   'Selamat ${controller.getGreeting()}, ${controller.name.value}!',
-                  style: AppText.Heading1,
+                  style: AppText.Header1,
                 )),
             Container(
               width: 46,
@@ -106,7 +106,7 @@ class HomeView extends GetView<HomeController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Daftar Tugas', style: AppText.Heading2),
+                  Text('Daftar Tugas', style: AppText.Header2),
                   GestureDetector(
                     onTap: () {},
                     child: Text(
@@ -159,7 +159,7 @@ class HomeView extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Presensi', style: AppText.Heading2),
+          Text('Presensi', style: AppText.Header2),
           const SizedBox(height: 4),
           Text(
             'Jangan lupa catat presensimu hari ini, ya!',
@@ -206,7 +206,7 @@ class HomeView extends GetView<HomeController> {
                                   children: [
                                     TextSpan(
                                       text: controller.currentTime.value,
-                                      style: AppText.Heading2,
+                                      style: AppText.Header2,
                                     ),
                                     TextSpan(
                                       text: ' WIB',
@@ -286,7 +286,7 @@ class HomeView extends GetView<HomeController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Kalender Kehadiran', style: AppText.Heading2),
+              Text('Kalender Kehadiran', style: AppText.Header2),
               GestureDetector(
                 onTap: () {},
                 child: Text(

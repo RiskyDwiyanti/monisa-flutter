@@ -6,6 +6,8 @@ import '../modules/auth/splash/bindings/splash_binding.dart';
 import '../modules/auth/splash/views/splash_view.dart';
 import '../modules/student/class/bindings/class_binding.dart';
 import '../modules/student/class/views/class_view.dart';
+import '../modules/student/detail_tugas/bindings/detail_tugas_binding.dart';
+import '../modules/student/detail_tugas/views/detail_tugas_view.dart';
 import '../modules/student/home/bindings/home_binding.dart';
 import '../modules/student/home/views/home_view.dart';
 import '../modules/student/kelas_selected/bindings/kelas_selected_binding.dart';
@@ -85,6 +87,11 @@ class AppPages {
       name: Routes.KELAS_SELECTED,
       page: () => const KelasSelectedView(),
       binding: KelasSelectedBinding(),
+    ),
+    GetPage(
+      name: Routes.DETAIL_TUGAS,
+      page: () => const DetailTugasView(),
+      binding: DetailTugasBinding(),
     ),
   ];
 }

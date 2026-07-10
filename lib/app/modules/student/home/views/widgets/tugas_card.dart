@@ -64,7 +64,7 @@ class TugasCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           title,
-                          style: AppText.Heading2,
+                          style: AppText.Header2,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),

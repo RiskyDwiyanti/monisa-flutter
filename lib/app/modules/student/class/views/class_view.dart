@@ -34,7 +34,7 @@ class ClassView extends GetView<ClassController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Kelas', style: AppText.Heading1),
+          Text('Kelas', style: AppText.Header1),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             decoration: BoxDecoration(

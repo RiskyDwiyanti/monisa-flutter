@@ -50,7 +50,7 @@ class TugasListCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title, style: AppText.Heading2),
+                        Text(title, style: AppText.Header2),
                         const SizedBox(height: 4),
                         Text(subject, style: AppText.Body2),
                       ],
