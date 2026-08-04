@@ -50,4 +50,10 @@ class AppText {
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
+
+  static TextStyle body_grafik = GoogleFonts.inter(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
 }

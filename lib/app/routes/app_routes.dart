@@ -15,6 +15,9 @@ abstract class Routes {
   static const TUGAS = _Paths.STUDENT + _Paths.TUGAS;
   static const KELAS_SELECTED = _Paths.STUDENT + _Paths.KELAS_SELECTED;
   static const DETAIL_TUGAS = _Paths.STUDENT + _Paths.DETAIL_TUGAS;
+  static const PRESENSI = _Paths.STUDENT + _Paths.PRESENSI;
+  static const SQAN_QR_PRESENSI = _Paths.STUDENT + _Paths.SQAN_QR_PRESENSI;
+  static const TAMBAH_PRESENSI = _Paths.STUDENT + _Paths.TAMBAH_PRESENSI;
 }
 
 abstract class _Paths {
@@ -33,4 +36,7 @@ abstract class _Paths {
   static const TUGAS = '/tugas';
   static const KELAS_SELECTED = '/kelas-selected';
   static const DETAIL_TUGAS = '/detail-tugas';
+  static const PRESENSI = '/presensi';
+  static const SQAN_QR_PRESENSI = '/sqan-qr-presensi';
+  static const TAMBAH_PRESENSI = '/tambah-presensi';
 }
