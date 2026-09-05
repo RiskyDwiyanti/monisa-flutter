@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/student/kehadiran/presensi/controllers/presensi_controller.dart';
+import 'package:monisa/app/modules/parent/presensi_parent/controllers/presensi_parent_controller.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 
-class CalendarPresensi extends StatefulWidget {
-  CalendarPresensi({super.key});
+class CalendarPresensiParent extends StatefulWidget {
+  CalendarPresensiParent({super.key});
 
   @override
-  State<CalendarPresensi> createState() => _CalendarState();
+  State<CalendarPresensiParent> createState() => _CalendarState();
 }
 
-class _CalendarState extends State<CalendarPresensi> {
-  final PresensiController controller = Get.find();
+class _CalendarState extends State<CalendarPresensiParent> {
+  final PresensiParentController controller = Get.find();
 
   late int year;
   late int month;

@@ -16,6 +16,7 @@ class PresensiHari {
   PresensiHari({required this.tanggal, required this.status});
 }
 
+// model untuk rekap kehadiran
 class RekapKehadiran {
   final int hadir;
   final int izin;
@@ -32,8 +33,27 @@ class RekapKehadiran {
   });
 }
 
-class PresensiController extends GetxController {
-  //TODO: Implement PresensiController
+// model untuk info presensi
+class InfoPresensi {
+  final DateTime tanggal;
+  final String status;
+  final String? jam;
+  final String? lokasiKelas;
+  final String? keterangan;
+  final String? lampiran;
+
+  InfoPresensi({
+    required this.tanggal,
+    required this.status,
+    this.jam,
+    this.lokasiKelas,
+    this.keterangan,
+    this.lampiran,
+  });
+}
+
+class PresensiParentController extends GetxController {
+  //TODO: Implement PresensiParentController
   final PresensiService _presensiService = PresensiService();
   final focusedMonth = DateTime(2026, 5).obs;
   final selectedSemester = 'Semester 4'.obs;
@@ -53,6 +73,8 @@ class PresensiController extends GetxController {
   final String waktuMasuk = "08:06:15";
   final String keterangan = "Sakit";
   final int jumlahLampiran = 2;
+  final Rxn<InfoPresensi> infoPresensi = Rxn<InfoPresensi>();
+  final RxBool isLoadingLatestAttendance = false.obs;
 
   final RxMap<DateTime, String> attendanceStatus = <DateTime, String>{}.obs;
   final RxBool isLoadingAttendance = false.obs;
@@ -70,6 +92,12 @@ class PresensiController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    fetchAttendance(
+      focusedMonth.value.year,
+      focusedMonth.value.month,
+    );
+
+    fetchLatestAttendance();
   }
 
   @override
@@ -88,7 +116,7 @@ class PresensiController extends GetxController {
     try {
       isLoadingAttendance.value = true;
 
-      final result = await _presensiService.getAttendances(
+      final result = await _presensiService.getParentAttendances(
         year: year,
         month: month,
       );
@@ -131,4 +159,52 @@ class PresensiController extends GetxController {
       isLoadingAttendance.value = false;
     }
   }
+
+  Future<void> fetchLatestAttendance() async {
+    try {
+      isLoadingLatestAttendance.value = true;
+
+      final result = await _presensiService.getLatestParentAttendance();
+
+      if (result['success'] == true) {
+
+        final data = result['data'];
+
+        print('LATEST ATTENDANCE DATA: $data');
+
+        // Belum ada presensi
+        if (data == null) {
+          infoPresensi.value = null;
+          return;
+        }
+
+        final tanggal =DateTime.parse(data['tanggal'].toString(),);
+
+        infoPresensi.value = InfoPresensi(
+          tanggal: tanggal,
+          status:data['status']?.toString().toLowerCase() ??'',
+          jam:data['jam']?.toString(),
+          lokasiKelas:data['rombel']?['nama']?.toString(),
+          keterangan:data['keterangan']?.toString(),
+          lampiran:data['lampiran']?.toString(),
+        );
+      } else {
+        Get.snackbar(
+          'Gagal',
+          result['message'] ??
+              'Gagal memuat presensi terbaru.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Terjadi kesalahan saat memuat presensi terbaru.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } finally {
+      isLoadingLatestAttendance.value = false;
+    }
+  }
 }
+

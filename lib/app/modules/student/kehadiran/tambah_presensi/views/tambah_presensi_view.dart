@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:monisa/app/modules/student/kehadiran/tambah_presensi/controllers/tambah_lampiran_controller.dart';
 import 'package:monisa/app/modules/student/kehadiran/tambah_presensi/controllers/tambah_presensi_controller.dart';
 import 'package:monisa/app/modules/student/kehadiran/tambah_presensi/views/spring_expanded.dart';
 import 'package:monisa/app/theme/app_colors.dart';
@@ -13,8 +12,7 @@ import 'package:monisa/app/theme/app_text.dart';
 class TambahPresensiView extends StatelessWidget {
   TambahPresensiView({super.key});
 
-  final TambahPresensiController keterangan = Get.find();
-  final TambahLampiranController lampiran = Get.find();
+  final TambahPresensiController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +106,7 @@ class TambahPresensiView extends StatelessWidget {
           // di dalamnya perlu full-width (mentok kiri-kanan).
           Obx(
             () => SpringExpand(
-              expand: keterangan.requiresAttachment,
+              expand: controller.requiresAttachment,
               child: _buildAttachmentSection(),
             ),
           ),
@@ -127,7 +125,7 @@ class TambahPresensiView extends StatelessWidget {
                 () => SizedBox(
                   width: double.infinity,
                   child: GestureDetector(
-                    onTap: lampiran.onPrimaryActionTap,
+                    onTap: controller.onPrimaryActionTap,
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       decoration: BoxDecoration(
@@ -137,7 +135,7 @@ class TambahPresensiView extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          lampiran.primaryActionLabel,
+                          controller.primaryActionLabel,
                           style: AppText.SubHeading.copyWith(color: AppColors.white),
                         ),
                       ),
@@ -154,15 +152,15 @@ class TambahPresensiView extends StatelessWidget {
 
   Widget _buildRadioOption(String label) {
     return GestureDetector(
-      onTap: () => keterangan.selectKeterangan(label),
+      onTap: () => controller.selectKeterangan(label),
       behavior: HitTestBehavior.opaque,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Radio<String>(
             value: label,
-            groupValue: keterangan.selectedKeterangan.value,
-            onChanged: (value) => keterangan.selectKeterangan(value!),
+            groupValue: controller.selectedKeterangan.value,
+            onChanged: (value) => controller.selectKeterangan(value!),
             fillColor: WidgetStateProperty.resolveWith<Color>((states) {
               if (states.contains(WidgetState.selected)) {
                 return AppColors.Tangerine; // warna saat dipilih
@@ -218,9 +216,9 @@ class TambahPresensiView extends StatelessWidget {
                     spacing: 12,
                     runSpacing: 12,
                     children: [
-                      ...List.generate(lampiran.attachedFiles.length, (index) {
+                      ...List.generate(controller.attachedFiles.length, (index) {
                         return _buildImageThumb(
-                            index, lampiran.attachedFiles[index]);
+                            index, controller.attachedFiles[index]);
                       }),
                       _buildAddBox(),
                     ],
@@ -237,7 +235,7 @@ class TambahPresensiView extends StatelessWidget {
   }
 
   Widget _buildImageThumb(int index, XFile file) {
-    final Uint8List? bytes = lampiran.bytesFor(file);
+    final Uint8List? bytes = controller.bytesFor(file);
     const width = 160.0;
     const height = 100.0;
 
@@ -278,7 +276,7 @@ class TambahPresensiView extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               GestureDetector(
-                onTap: () => lampiran.removeImage(index),
+                onTap: () => controller.removeImage(index),
                 child: SvgPicture.asset(
                   'assets/icons/close_icon.svg',
                   width: 16,
@@ -294,7 +292,7 @@ class TambahPresensiView extends StatelessWidget {
 
   Widget _buildAddBox() {
     return GestureDetector(
-      onTap: lampiran.pickImage,
+      onTap: controller.pickImage,
       child: Container(
         width: 160,
         height: 100,

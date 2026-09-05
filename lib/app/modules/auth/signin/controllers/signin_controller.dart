@@ -57,7 +57,14 @@ class SigninController extends GetxController {
 
         final role = user['role']?.toString().trim().toLowerCase();
 
-        Get.toNamed(Routes.MAIN);
+        if (role == 'student') {
+          Get.offAllNamed(Routes.MAIN);
+        } else if (role == 'teacher') {
+          Get.offAllNamed(Routes.MAIN_TEACHER);
+        } else if (role == 'parent') {
+          Get.offAllNamed(Routes.MAIN_PARENT);
+        }
+
       } else {
         Get.snackbar(
           'Error',
