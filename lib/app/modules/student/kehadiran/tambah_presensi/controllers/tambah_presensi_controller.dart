@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:monisa/app/data/services/presensi_service.dart';
+import 'package:monisa/app/modules/student/kehadiran/presensi/controllers/presensi_controller.dart';
+import 'package:monisa/app/modules/student/main/controllers/main_controller.dart';
 import 'package:monisa/app/routes/app_pages.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
@@ -74,6 +76,24 @@ class TambahPresensiController extends GetxController {
     }
   }
 
+  Future<void> backToPresensi() async {
+    final presensiController = Get.find<PresensiController>();
+
+    // Refresh kalender
+    await presensiController.fetchAttendance(
+      presensiController.focusedMonth.value.year,
+      presensiController.focusedMonth.value.month,
+    );
+
+    // Pilih tab Presensi di Main
+    final mainController = Get.find<MainController>();
+    mainController.changeIndex(2);
+
+    // Kembali ke Main
+    Get.until((route) => route.settings.name == Routes.MAIN);
+  }
+
+  // Hadir
    Future<void> scanQR() async {
     final result = await Get.toNamed(
       Routes.SQAN_QR_PRESENSI,
@@ -116,7 +136,7 @@ class TambahPresensiController extends GetxController {
         );
 
         // Kembali dari halaman tambah presensi
-        Get.back();
+        await backToPresensi();
       } else {
         Get.snackbar(
           'Presensi Gagal',
@@ -298,7 +318,7 @@ class TambahPresensiController extends GetxController {
         clearAttachment();
 
         // Kembali ke halaman sebelumnya
-        Get.offNamed(Routes.PRESENSI);
+        await backToPresensi();
         } else {
         Get.snackbar(
           'Presensi Gagal',

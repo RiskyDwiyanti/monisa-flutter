@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:monisa/app/config/api_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class PresensiService {
-  static const String baseUrl = 'http://127.0.0.1:8000/api';
+  static const String baseUrl = '${ApiConfig.baseUrl}';
 
   /// Ambil token Sanctum dari SharedPreferences
   Future<String?> _getToken() async {

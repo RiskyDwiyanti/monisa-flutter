@@ -5,11 +5,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:monisa/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:monisa/app/config/api_config.dart';
 
 class SigninController extends GetxController {
   //TODO: Implement SigninController
   final usernameC = TextEditingController();
   final passwordC = TextEditingController();
+  final url = Uri.parse(
+    '${ApiConfig.baseUrl}/auth/signin',
+  );
 
   var isLoading = false.obs;
   var obscurePassword = true.obs;
@@ -28,7 +32,7 @@ class SigninController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/auth/signin'),
+        (url),
         headers: {
           'Content-Type': 'application/json',
         },

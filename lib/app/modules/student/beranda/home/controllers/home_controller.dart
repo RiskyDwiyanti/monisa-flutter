@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:monisa/app/config/api_config.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -52,7 +53,7 @@ class HomeController extends GetxController {
       print("TOKEN: $token");
 
       final response = await http.get(
-        Uri.parse('http://127.0.0.1:8000/api/auth/profile'),
+        Uri.parse('${ApiConfig.baseUrl}/auth/profile'),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer $token",

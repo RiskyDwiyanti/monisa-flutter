@@ -35,7 +35,7 @@ class RekapKehadiran {
 class PresensiController extends GetxController {
   //TODO: Implement PresensiController
   final PresensiService _presensiService = PresensiService();
-  final focusedMonth = DateTime(2026, 5).obs;
+  final focusedMonth = DateTime.now().obs;
   final selectedSemester = 'Semester 4'.obs;
   final List<String> semesterList = [
     'Semester 1',
