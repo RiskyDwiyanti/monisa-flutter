@@ -2,18 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'package:monisa/app/data/services/auth_service.dart';
 import 'package:monisa/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:monisa/app/config/api_config.dart';
 
 class SigninController extends GetxController {
   //TODO: Implement SigninController
   final usernameC = TextEditingController();
   final passwordC = TextEditingController();
-  final url = Uri.parse(
-    '${ApiConfig.baseUrl}/auth/signin',
-  );
+  final AuthService _authService = AuthService();
 
   var isLoading = false.obs;
   var obscurePassword = true.obs;
@@ -28,38 +25,42 @@ class SigninController extends GetxController {
       return;
     }
 
-    isLoading.value =true;
+    isLoading.value = true;
 
     try {
-      final response = await http.post(
-        (url),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'username': usernameC.text.trim(),
-          'password': passwordC.text,
-        }),
+      final response = await _authService.signin(
+        username: usernameC.text.trim(),
+        password: passwordC.text,
       );
 
-      print('STATUS CODE : ${response.statusCode}');
-      print('RESPONSE    : ${response.body}');
+      if (response['success'] == true) {
+        final token = response['token'];
+        final user = response['user'];
 
-      final data = jsonDecode(response.body);
-
-      if (response.statusCode == 200 && data['success'] == true) {
-        final prefs = await SharedPreferences.getInstance();
-
-        await prefs.setString('token', data['token']);
-        await prefs.setString('user', jsonEncode(data['user']));
-
-        final user = data['user'];
-        if (user == null) {
-          Get.snackbar('Error', 'User data is null');
+        if (token == null || user == null) {
+          Get.snackbar(
+            'Error',
+            'Data login tidak lengkap.',
+          );
           return;
         }
 
-        final role = user['role']?.toString().trim().toLowerCase();
+        final prefs = await SharedPreferences.getInstance();
+
+        await prefs.setString(
+          'token',
+          token.toString(),
+        );
+
+        await prefs.setString(
+          'user',
+          jsonEncode(user),
+        );
+
+        final role = user['role']
+            ?.toString()
+            .trim()
+            .toLowerCase();
 
         if (role == 'student') {
           Get.offAllNamed(Routes.MAIN);
@@ -67,12 +68,16 @@ class SigninController extends GetxController {
           Get.offAllNamed(Routes.MAIN_TEACHER);
         } else if (role == 'parent') {
           Get.offAllNamed(Routes.MAIN_PARENT);
+        } else {
+          Get.snackbar(
+            'Error',
+            'Role pengguna tidak dikenali.',
+          );
         }
-
       } else {
         Get.snackbar(
           'Error',
-          data['message'] ?? 'Login failed',
+          response['message'] ?? 'Login failed',
         );
       }
     } catch (e) {
