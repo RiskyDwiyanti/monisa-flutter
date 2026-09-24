@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/class_teacher/views/class_teacher_view.dart';
-import 'package:monisa/app/modules/teacher/home_teacher/views/home_teacher_view.dart';
-import 'package:monisa/app/modules/teacher/main_teacher/views/widget/custom_button_nav_bar_teacher.dart';
-import 'package:monisa/app/modules/teacher/presensi_teacher/views/presensi_teacher_view.dart';
-import 'package:monisa/app/modules/teacher/profile_teacher/views/profile_teacher_view.dart';
+import 'package:monisa/app/modules/teacher/beranda/home_teacher/views/home_teacher_view.dart';
+import 'package:monisa/app/modules/teacher/kelas/class_teacher/views/class_teacher_view.dart';
+import 'package:monisa/app/modules/teacher/main/main_teacher/views/widget/custom_button_nav_bar_teacher.dart';
+import 'package:monisa/app/modules/teacher/kehadiran/presensi_teacher/views/presensi_teacher_view.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/views/profile_teacher_view.dart';
 
 import '../controllers/main_teacher_controller.dart';
 

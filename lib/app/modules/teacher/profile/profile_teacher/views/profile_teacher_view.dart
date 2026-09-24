@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/profile_teacher/views/widget/dashed_divider_teacher.dart';
-import 'package:monisa/app/modules/teacher/profile_teacher/views/widget/menu_title.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/views/widget/dashed_divider_teacher.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/views/widget/menu_title.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 

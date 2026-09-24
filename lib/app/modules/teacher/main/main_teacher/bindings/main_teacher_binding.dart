@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/class_teacher/controllers/class_teacher_controller.dart';
-import 'package:monisa/app/modules/teacher/home_teacher/controllers/home_teacher_controller.dart';
-import 'package:monisa/app/modules/teacher/presensi_teacher/controllers/presensi_teacher_controller.dart';
-import 'package:monisa/app/modules/teacher/profile_teacher/controllers/profile_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/beranda/home_teacher/controllers/home_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/kelas/class_teacher/controllers/class_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/kehadiran/presensi_teacher/controllers/presensi_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/controllers/profile_teacher_controller.dart';
 
 import '../controllers/main_teacher_controller.dart';
 

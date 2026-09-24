@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:monisa/app/modules/teacher/beranda/home_teacher/bindings/home_teacher_binding.dart';
+import 'package:monisa/app/modules/teacher/beranda/home_teacher/views/home_teacher_view.dart';
 
 import '../modules/auth/signin/bindings/signin_binding.dart';
 import '../modules/auth/signin/views/signin_view.dart';
@@ -38,16 +40,14 @@ import '../modules/student/main/bindings/main_binding.dart';
 import '../modules/student/main/views/main_view.dart';
 import '../modules/student/profile/bindings/profile_binding.dart';
 import '../modules/student/profile/views/profile_view.dart';
-import '../modules/teacher/class_teacher/bindings/class_teacher_binding.dart';
-import '../modules/teacher/class_teacher/views/class_teacher_view.dart';
-import '../modules/teacher/home_teacher/bindings/home_teacher_binding.dart';
-import '../modules/teacher/home_teacher/views/home_teacher_view.dart';
-import '../modules/teacher/main_teacher/bindings/main_teacher_binding.dart';
-import '../modules/teacher/main_teacher/views/main_teacher_view.dart';
-import '../modules/teacher/presensi_teacher/bindings/presensi_teacher_binding.dart';
-import '../modules/teacher/presensi_teacher/views/presensi_teacher_view.dart';
-import '../modules/teacher/profile_teacher/bindings/profile_teacher_binding.dart';
-import '../modules/teacher/profile_teacher/views/profile_teacher_view.dart';
+import '../modules/teacher/kelas/class_teacher/bindings/class_teacher_binding.dart';
+import '../modules/teacher/kelas/class_teacher/views/class_teacher_view.dart';
+import '../modules/teacher/main/main_teacher/bindings/main_teacher_binding.dart';
+import '../modules/teacher/main/main_teacher/views/main_teacher_view.dart';
+import '../modules/teacher/kehadiran/presensi_teacher/bindings/presensi_teacher_binding.dart';
+import '../modules/teacher/kehadiran/presensi_teacher/views/presensi_teacher_view.dart';
+import '../modules/teacher/profile/profile_teacher/bindings/profile_teacher_binding.dart';
+import '../modules/teacher/profile/profile_teacher/views/profile_teacher_view.dart';
 
 part 'app_routes.dart';
 
