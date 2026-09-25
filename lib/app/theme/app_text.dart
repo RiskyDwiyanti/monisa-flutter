@@ -22,7 +22,7 @@ class AppText {
   );
 
   static TextStyle Body_Bold = GoogleFonts.manrope(
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
@@ -34,7 +34,7 @@ class AppText {
   );
 
   static TextStyle Body = GoogleFonts.manrope(
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );

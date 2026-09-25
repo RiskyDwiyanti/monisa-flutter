@@ -45,7 +45,7 @@ class SigninView extends GetView<SigninController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 180,),
+                    const SizedBox(height: 140,),
 
                     // Title
                     Text(
