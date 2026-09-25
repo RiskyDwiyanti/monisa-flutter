@@ -41,7 +41,6 @@ class AttendanceCalendarSection extends StatelessWidget {
         Text('Cek rekap kehadiran anak di sini.', style: AppText.SubHeading),
         const SizedBox(height: 12),
         _buildCalendarCard(),
-        const SizedBox(height: 12),
         _buildTodayDetail(),
       ],
     );
@@ -57,7 +56,10 @@ class AttendanceCalendarSection extends StatelessWidget {
       return Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16)
+          ),
           border: Border.all(color: AppColors.black),
         ),
         child: Column(
@@ -272,29 +274,65 @@ class AttendanceCalendarSection extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: AppColors.Tangerine,
-          borderRadius: BorderRadius.circular(16),
+          color: AppColors.white,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(16),
+            bottomRight: Radius.circular(16)
+          ),
+          border: Border(
+            bottom: BorderSide(color: AppColors.black,width: 1),
+            left: BorderSide(color: AppColors.black,width: 1),
+            right: BorderSide(color: AppColors.black,width: 1),
+          )
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 56,
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFFE8921A), width: 1.5),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    '${detail.date.day}',
-                    style: AppText.Header2.copyWith(color: const Color(0xFFE8921A)),
+            Column(
+              children: [
+                Container(
+                  width: 60,
+                  padding: const EdgeInsets.symmetric(vertical: 7),
+                  decoration: BoxDecoration(
+                    color: AppColors.Tangerine,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    border: Border(
+                      top: BorderSide(color: AppColors.black,width: 1),
+                      right: BorderSide(color: AppColors.black,width: 1),
+                      left: BorderSide(color: AppColors.black,width: 1),
+                      bottom: BorderSide(color: AppColors.black,width: 1),
+                    )
                   ),
-                  Text(DateFormat('MMM', 'id_ID').format(detail.date), style: AppText.Body2),
-                ],
-              ),
+                ),
+                Container(
+                  width: 60,
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                    border: Border(
+                      bottom: BorderSide(color: AppColors.black,width: 1),
+                      right: BorderSide(color: AppColors.black,width: 1),
+                      left: BorderSide(color: AppColors.black,width: 1),
+                    )
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        '${detail.date.day}',
+                        style: AppText.Header2,
+                      ),
+                      Text(DateFormat('MMM', 'id_ID').format(detail.date), style: AppText.Body2),
+                    ],
+                  ),
+                ),
+              ],
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -320,8 +358,8 @@ class AttendanceCalendarSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
                   detail.lampiran.first,
-                  width: 48,
-                  height: 64,
+                  width: 97,
+                  height: 82,
                   fit: BoxFit.cover,
                 ),
               ),

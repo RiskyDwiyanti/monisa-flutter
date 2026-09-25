@@ -1,6 +1,7 @@
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+// import 'package:monisa/app/config/api_config.dart';
 import 'package:monisa/app/data/services/home_service.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 
@@ -62,7 +63,9 @@ class LatestAttendanceModel {
 
   int get lampiranCount => lampiran.length;
 
-  factory LatestAttendanceModel.fromJson(Map<String, dynamic> json) {
+  factory LatestAttendanceModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return LatestAttendanceModel(
       date: DateTime.parse(json['tanggal']),
       status: _statusFromString(json['status']),
@@ -73,9 +76,20 @@ class LatestAttendanceModel {
   }
 
   static List<String> _lampiranFromJson(dynamic value) {
-    if (value == null) return [];
-    if (value is List) return value.map((e) => e.toString()).toList();
-    if (value is String && value.isNotEmpty) return [value];
+    if (value == null) {
+      return [];
+    }
+
+    if (value is List) {
+      return value
+          .map((e) => e.toString())
+          .toList();
+    }
+
+    if (value is String && value.isNotEmpty) {
+      return [value];
+    }
+
     return [];
   }
 }

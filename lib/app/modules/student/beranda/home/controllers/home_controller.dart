@@ -13,20 +13,96 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
 
   // kalender
-  final focusedMonth = DateTime(2026, 5).obs;
-  final Map<DateTime, String> attendanceStatus = {
-    // DateTime(2026, 5, 1): 'Libur',
-    DateTime(2026, 5, 4): 'hadir',
-    DateTime(2026, 5, 5): 'hadir',
-    DateTime(2026, 5, 6): 'hadir',
-    DateTime(2026, 5, 7): 'hadir',
-    DateTime(2026, 5, 8): 'hadir',
-    DateTime(2026, 5, 11): 'hadir',
-    DateTime(2026, 5, 12): 'hadir',
-    DateTime(2026, 5, 13): 'sakit',
-    DateTime(2026, 5, 14): 'libur',
-    DateTime(2026, 5, 15): 'sakit',
-  };
+  final focusedMonth = DateTime.now().obs;
+  final RxMap<DateTime, String> attendanceStatus = <DateTime, String>{}.obs;
+
+  Future<void> fetchHomeData() async {
+    try {
+      isLoading.value = true;
+
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token') ?? '';
+
+      final response = await http.get(
+        Uri.parse(
+          '${ApiConfig.baseUrl}/student/home'
+          '?year=${focusedMonth.value.year}'
+          '&month=${focusedMonth.value.month}',
+        ),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      print('HOME RESPONSE: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+
+        final data = jsonData['data'];
+
+        // Nama siswa
+        name.value = data['siswa']?['nama'] ?? '';
+
+        // Periode dari API
+        final periode = data['periode'];
+
+        if (periode != null) {
+          focusedMonth.value = DateTime(
+            periode['tahun'],
+            periode['bulan'],
+          );
+        }
+
+        // Kalender
+        _parseAttendanceCalendar(
+          data['kalender_kehadiran'],
+        );
+      } else {
+        print(
+          'Gagal mengambil data home: ${response.statusCode}',
+        );
+      }
+    } catch (e) {
+      print('Error fetch home: $e');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  void _parseAttendanceCalendar(dynamic calendarData) {
+    attendanceStatus.clear();
+
+    if (calendarData == null || calendarData is! List) {
+      return;
+    }
+
+    for (final item in calendarData) {
+      try {
+        final date = DateTime.parse(item['tanggal']);
+
+        final dateOnly = DateTime(
+          date.year,
+          date.month,
+          date.day,
+        );
+
+        attendanceStatus[dateOnly] = item['status'];
+      } catch (e) {
+        print('Error parse kalender: $e');
+      }
+    }
+  }
+
+  void changeMonth(int offset) {
+    focusedMonth.value = DateTime(
+      focusedMonth.value.year,
+      focusedMonth.value.month + offset,
+    );
+
+    fetchHomeData();
+  }
 
   //greeting
   String getGreeting() {
@@ -80,6 +156,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchName();
+    fetchHomeData();
   }
 
   @override

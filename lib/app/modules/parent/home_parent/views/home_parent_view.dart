@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:monisa/app/modules/parent/home_parent/views/widget/attendance_calendar_section.dart';
 import 'package:monisa/app/modules/parent/home_parent/views/widget/greeting_header.dart';
+import 'package:monisa/app/modules/parent/home_parent/views/widget/nilai_section.dart';
 import 'package:monisa/app/modules/parent/home_parent/views/widget/task_list_section.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 
@@ -12,7 +14,7 @@ class HomeParentView extends GetView<HomeParentController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.Butter,
+      backgroundColor: AppColors.Lychee,
       body: SafeArea(
         child: Column(
           children: [

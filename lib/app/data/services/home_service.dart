@@ -60,10 +60,8 @@ class HomeService {
   }
 
   // Home Parent
-  Future<Map<String, dynamic>> getParentHome({
-    required int year,
-    required int month,
-  }) async {
+  Future<Map<String, dynamic>> getParentHome({required int year, required int month,}) async 
+  {
     try {
       final headers = await _headers();
 
@@ -90,4 +88,35 @@ class HomeService {
       };
     }
   }
+
+  // Home Student
+  Future<Map<String, dynamic>> getStudentHome({required int year, required int month,}) async 
+  {
+    try {
+      final headers = await _headers();
+
+      final response = await http.get(
+        Uri.parse('$baseUrl/student/home?year=$year&month=$month'),
+        headers: headers,
+      );
+
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat data beranda.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+
 }
