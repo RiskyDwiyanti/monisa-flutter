@@ -1,28 +1,20 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:monisa/app/data/services/auth_service.dart';
 import 'package:monisa/app/routes/app_pages.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileController extends GetxController {
+class ProfileTeacherController extends GetxController {
   final AuthService _authService = AuthService();
 
   final RxString name = ''.obs;
-  final RxString kelas = ''.obs;
-  final RxString tahunAjaran = ''.obs;
-  final RxString nis = ''.obs;
+  final RxList<String> mapel = <String>[].obs;
+  final RxString nuptk = ''.obs;
   final RxString photoUrl = ''.obs; // isi dengan asset/network image path
+
   final RxBool isLoading = false.obs;
-
-  String get kelasInfo {
-    if (kelas.value.isEmpty && tahunAjaran.value.isEmpty) {
-      return '';
-    }
-
-    return '${kelas.value} • ${tahunAjaran.value}';
-  }
 
   void ubahPassword() {}
 
@@ -129,8 +121,7 @@ class ProfileController extends GetxController {
     } catch (e) {
       print('Logout error: $e');
     } finally {
-      final prefs =
-          await SharedPreferences.getInstance();
+      final prefs = await SharedPreferences.getInstance();
 
       await prefs.clear();
 
@@ -161,17 +152,27 @@ class ProfileController extends GetxController {
 
         name.value = data['name']?.toString() ?? '';
 
-        final student = data['student'];
+        final teacher = data['teacher'];
 
-        if (student != null) {
-          nis.value = student['nis']?.toString() ?? '';
-          photoUrl.value = student['photo']?.toString() ?? '';
+        if (teacher != null) {
+          nuptk.value = teacher['nuptk']?.toString() ?? '';
+          photoUrl.value = teacher['photo']?.toString() ?? '';
+          mapel.clear();
 
-          final rombel = student['rombel'];
-          
-          if (rombel != null) {
-            kelas.value = rombel['nama_kelas']?.toString() ?? '';
-            tahunAjaran.value = rombel['tahun_ajaran']?.toString() ?? '';
+          final schoolMapels = teacher['school_mapels'];
+
+          if (schoolMapels is List) {
+            for (final schoolMapel in schoolMapels) {
+              final masterMapel = schoolMapel['master_mapel'];
+
+              if (masterMapel != null) {
+                final namaMapel = masterMapel['name']?.toString();
+
+                if (namaMapel != null && namaMapel.isNotEmpty) {
+                  mapel.add(namaMapel);
+                }
+              }
+            }
           }
         }
       } else {

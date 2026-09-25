@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/main_teacher/controllers/main_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/main/main_teacher/controllers/main_teacher_controller.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 

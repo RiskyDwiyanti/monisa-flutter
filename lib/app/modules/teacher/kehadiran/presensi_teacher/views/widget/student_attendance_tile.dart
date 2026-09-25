@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monisa/app/modules/teacher/presensi_teacher/controllers/presensi_teacher_controller.dart';
+import 'package:monisa/app/modules/teacher/kehadiran/presensi_teacher/controllers/presensi_teacher_controller.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 

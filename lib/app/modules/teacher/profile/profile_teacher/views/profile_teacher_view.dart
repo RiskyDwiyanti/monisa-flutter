@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/parent/profile_parent/views/widget/dashed_divider.dart';
-import 'package:monisa/app/modules/parent/profile_parent/views/widget/menu_title.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/views/widget/dashed_divider_teacher.dart';
+import 'package:monisa/app/modules/teacher/profile/profile_teacher/views/widget/menu_title.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 
-import '../controllers/profile_parent_controller.dart';
+import '../controllers/profile_teacher_controller.dart';
 
-class ProfileParentView extends GetView<ProfileParentController> {
-  const ProfileParentView({super.key});
+class ProfileTeacherView extends GetView<ProfileTeacherController> {
+  const ProfileTeacherView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class ProfileParentView extends GetView<ProfileParentController> {
                     _buildProfileInfo(),
                   ],
                 ),
-              )
+              ),
             ),
           ],
         ),
@@ -43,9 +43,7 @@ class ProfileParentView extends GetView<ProfileParentController> {
       padding: const EdgeInsets.only(top: 40, bottom: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Profil', style: AppText.Header1),
-        ],
+        children: [Text('Profil', style: AppText.Header1)],
       ),
     );
   }
@@ -67,7 +65,7 @@ class ProfileParentView extends GetView<ProfileParentController> {
               left: BorderSide(color: AppColors.black, width: 1),
               right: BorderSide(color: AppColors.black, width: 1),
               bottom: BorderSide(color: AppColors.black, width: 1),
-            )
+            ),
           ),
         ),
         Container(
@@ -119,15 +117,32 @@ class ProfileParentView extends GetView<ProfileParentController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Obx(
-                          () => Text(controller.name.value, style: AppText.Header2),
+                          () => Text(
+                            controller.name.value,
+                            style: AppText.Header2,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Obx(
-                          () => Text(controller.role.value, style: AppText.Body1_SemiBold),
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: controller.mapel.map((nama) {
+                              return Padding(
+                                padding: EdgeInsets.only(bottom: 4),
+                                child: Text(
+                                  nama,
+                                  style: AppText.Body1_SemiBold,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Obx(
-                          () => Text(controller.nisn.value, style: AppText.Body1_SemiBold),
+                          () => Text(
+                            controller.nuptk.value,
+                            style: AppText.Body1_SemiBold,
+                          ),
                         ),
                       ],
                     ),
@@ -144,11 +159,11 @@ class ProfileParentView extends GetView<ProfileParentController> {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: AppColors.black, width: 1),
                 ),
-                child: MenuTitleParent(
-                    icon: SvgPicture.asset('assets/icons/key_icon.svg'),
-                    label: 'Pengaturan',
-                    onTap: controller.ubahPassword,
-                  ),
+                child: MenuTitleTeacher(
+                  icon: SvgPicture.asset('assets/icons/key_icon.svg'),
+                  label: 'Ubah Password',
+                  onTap: controller.ubahPassword,
+                ),
               ),
 
               const SizedBox(height: 16),
@@ -161,14 +176,14 @@ class ProfileParentView extends GetView<ProfileParentController> {
                 ),
                 child: Column(
                   children: [
-                    MenuTitleParent(
-                      icon:  SvgPicture.asset('assets/icons/question_icon.svg'), 
+                    MenuTitleTeacher(
+                      icon: SvgPicture.asset('assets/icons/question_icon.svg'),
                       label: 'Pusat Bantuan',
                       onTap: controller.pusatBantuan,
                     ),
-                    DashedDividerParent(),
-                    MenuTitleParent(
-                      icon:  SvgPicture.asset('assets/icons/heart_icon.svg'), 
+                    DashedDividerTeacher(),
+                    MenuTitleTeacher(
+                      icon: SvgPicture.asset('assets/icons/heart_icon.svg'),
                       label: 'Umpan Balik',
                       onTap: controller.umpanBalik,
                     ),
@@ -184,17 +199,16 @@ class ProfileParentView extends GetView<ProfileParentController> {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: AppColors.black, width: 1),
                 ),
-                child: MenuTitleParent(
+                child: MenuTitleTeacher(
                   icon: SvgPicture.asset('assets/icons/logout_icon.svg'),
                   label: 'Log out',
                   onTap: controller.logout,
                 ),
               ),
             ],
-          )
+          ),
         ),
       ],
     );
   }
-
 }

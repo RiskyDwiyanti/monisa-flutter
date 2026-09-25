@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/presensi_teacher/views/widget/attendance_donut_chart.dart';
-import 'package:monisa/app/modules/teacher/presensi_teacher/views/widget/student_attendance_tile.dart';
+import 'package:monisa/app/modules/teacher/kehadiran/presensi_teacher/views/widget/attendance_donut_chart.dart';
+import 'package:monisa/app/modules/teacher/kehadiran/presensi_teacher/views/widget/student_attendance_tile.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 import 'package:monisa/app/theme/app_text.dart';
 
