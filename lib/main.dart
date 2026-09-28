@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
     // }
 
     return GetMaterialApp(
-      title: 'Fitpal',
+      title: 'Monisa',
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

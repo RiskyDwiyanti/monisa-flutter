@@ -27,6 +27,9 @@ abstract class Routes {
   static const CLASS_PARENT = _Paths.PARENT + _Paths.CLASS_PARENT;
   static const PROFILE_PARENT = _Paths.PARENT + _Paths.PROFILE_PARENT;
   static const HOME_PARENT = _Paths.PARENT + _Paths.HOME_PARENT;
+  static const DETAIL_PRESENSI =
+      _Paths.TEACHER + _Paths.KEHADIRAN + _Paths.DETAIL_PRESENSI;
+  static const KELAS_SELECTED = _Paths.TEACHER + _Paths.KELAS_SELECTED;
 }
 
 abstract class _Paths {
@@ -35,6 +38,7 @@ abstract class _Paths {
   static const STUDENT = '/student';
   static const TEACHER = '/teacher';
   static const PARENT = '/parent';
+  static const KEHADIRAN = '/kehadiran';
   static const HOME = '/home';
   static const SPLASH = '/splash';
   static const SIGNIN = '/signin';
@@ -59,4 +63,6 @@ abstract class _Paths {
   static const CLASS_PARENT = '/class-parent';
   static const PROFILE_PARENT = '/profile-parent';
   static const HOME_PARENT = '/home-parent';
+  static const DETAIL_PRESENSI = '/detail-presensi';
+  static const KELAS_SELECTED = '/kelas-selected';
 }

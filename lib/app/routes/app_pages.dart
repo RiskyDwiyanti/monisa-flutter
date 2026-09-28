@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:monisa/app/modules/teacher/beranda/home_teacher/bindings/home_teacher_binding.dart';
-import 'package:monisa/app/modules/teacher/beranda/home_teacher/views/home_teacher_view.dart';
 
 import '../modules/auth/signin/bindings/signin_binding.dart';
 import '../modules/auth/signin/views/signin_view.dart';
@@ -40,12 +38,18 @@ import '../modules/student/main/bindings/main_binding.dart';
 import '../modules/student/main/views/main_view.dart';
 import '../modules/student/profile/bindings/profile_binding.dart';
 import '../modules/student/profile/views/profile_view.dart';
-import '../modules/teacher/kelas/class_teacher/bindings/class_teacher_binding.dart';
-import '../modules/teacher/kelas/class_teacher/views/class_teacher_view.dart';
-import '../modules/teacher/main/main_teacher/bindings/main_teacher_binding.dart';
-import '../modules/teacher/main/main_teacher/views/main_teacher_view.dart';
+import '../modules/teacher/beranda/home_teacher/bindings/home_teacher_binding.dart';
+import '../modules/teacher/beranda/home_teacher/views/home_teacher_view.dart';
+import '../modules/teacher/kehadiran/detail_presensi/bindings/detail_presensi_binding.dart';
+import '../modules/teacher/kehadiran/detail_presensi/views/detail_presensi_view.dart';
 import '../modules/teacher/kehadiran/presensi_teacher/bindings/presensi_teacher_binding.dart';
 import '../modules/teacher/kehadiran/presensi_teacher/views/presensi_teacher_view.dart';
+import '../modules/teacher/kelas/class_teacher/bindings/class_teacher_binding.dart';
+import '../modules/teacher/kelas/class_teacher/views/class_teacher_view.dart';
+import '../modules/teacher/kelas_selected/bindings/kelas_selected_binding.dart';
+import '../modules/teacher/kelas_selected/views/kelas_selected_view.dart';
+import '../modules/teacher/main/main_teacher/bindings/main_teacher_binding.dart';
+import '../modules/teacher/main/main_teacher/views/main_teacher_view.dart';
 import '../modules/teacher/profile/profile_teacher/bindings/profile_teacher_binding.dart';
 import '../modules/teacher/profile/profile_teacher/views/profile_teacher_view.dart';
 
@@ -176,6 +180,16 @@ class AppPages {
       name: _Paths.HOME_PARENT,
       page: () => const HomeParentView(),
       binding: HomeParentBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PRESENSI,
+      page: () => const DetailPresensiView(),
+      binding: DetailPresensiBinding(),
+    ),
+    GetPage(
+      name: _Paths.KELAS_SELECTED,
+      page: () => const KelasSelectedView(),
+      binding: KelasSelectedBinding(),
     ),
   ];
 }
