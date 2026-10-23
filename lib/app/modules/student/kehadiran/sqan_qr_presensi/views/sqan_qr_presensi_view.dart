@@ -86,7 +86,7 @@ class SqanQrPresensiView extends GetView<SqanQrPresensiController> {
           const SizedBox(height: 32),
           Text(
             'Arahkan kode QR ke dalam kotak',
-            style: AppText.SubHeading,
+            style: AppText.SubHeader_SemiBold,
             textAlign: TextAlign.center,
           ),
         ],

@@ -136,7 +136,7 @@ class TambahPresensiView extends StatelessWidget {
                       child: Center(
                         child: Text(
                           controller.primaryActionLabel,
-                          style: AppText.SubHeading.copyWith(color: AppColors.white),
+                          style: AppText.SubHeader_SemiBold.copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
@@ -173,7 +173,7 @@ class TambahPresensiView extends StatelessWidget {
           const SizedBox(width: 2),
           Text(
             label,
-            style: AppText.SubHeading
+            style: AppText.SubHeader_SemiBold
           ),
         ],
       ),
@@ -206,7 +206,7 @@ class TambahPresensiView extends StatelessWidget {
               children: [
                 Text(
                   'Masukkan surat izin',
-                  style: AppText.SubHeading,
+                  style: AppText.SubHeader_SemiBold,
                 ),
                 const SizedBox(height: 12),
 

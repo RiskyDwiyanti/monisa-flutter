@@ -34,7 +34,7 @@ class MenuTitleTeacher extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: AppText.SubHeading
+                style: AppText.SubHeader_SemiBold
               ),
             ),
           ],

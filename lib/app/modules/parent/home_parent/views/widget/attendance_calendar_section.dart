@@ -32,13 +32,13 @@ class AttendanceCalendarSection extends StatelessWidget {
               },
               child: Text(
                 'Selengkapnya',
-                style: AppText.SubHeading.copyWith(decoration: TextDecoration.underline),
+                style: AppText.SubHeader_SemiBold.copyWith(decoration: TextDecoration.underline),
               ),
             ),
           ],
         ),
         const SizedBox(height: 4),
-        Text('Cek rekap kehadiran anak di sini.', style: AppText.SubHeading),
+        Text('Cek rekap kehadiran anak di sini.', style: AppText.SubHeader_Regular),
         const SizedBox(height: 12),
         _buildCalendarCard(),
         _buildTodayDetail(),
@@ -160,7 +160,7 @@ class AttendanceCalendarSection extends StatelessWidget {
       child: Center(
         child: Text(
           label,
-          style: AppText.SubHeading.copyWith(
+          style: AppText.SubHeader_Regular.copyWith(
             color: isWeekend ? AppColors.Blush : AppColors.black,
           ),
         ),
@@ -339,7 +339,7 @@ class AttendanceCalendarSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('${detail.time} WIB', style: AppText.SubHeading),
+                  Text('${detail.time} WIB', style: AppText.SubHeader_SemiBold),
                   const SizedBox(height: 4),
                   Text('Keterangan: ${detail.keterangan}', style: AppText.Body2),
                   const SizedBox(height: 4),

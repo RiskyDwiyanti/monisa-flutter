@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:monisa/app/data/services/teacher_class_service.dart';
+import 'package:monisa/app/data/services/teacher/teacher_class_service.dart';
 import 'package:monisa/app/theme/app_colors.dart';
 
 class StudentPreview {
@@ -50,6 +50,19 @@ class TeacherClassModel {
     final schoolMapel = json['school_mapel'] as Map<String, dynamic>?;
     final masterMapel = schoolMapel?['master_mapel'] as Map<String, dynamic>?;
 
+    final schoolMajor = rombel?['school_major'] as Map<String, dynamic>?;
+    final major = schoolMajor?['major'] as Map<String, dynamic>?;
+
+    final jenjang = (rombel?['jenjang'] ?? '').toString();
+    // pakai 'code' kalau ada, fallback ke 'name'
+    final jurusanKode = (major?['kode_jur'] ?? major?['name'] ?? '').toString();
+    final namaRombel = (rombel?['name'] ?? '-').toString();
+
+    // Susun: "XI IPA A" — lewati bagian yang kosong
+    final rombelDisplay = [jenjang, jurusanKode, namaRombel]
+        .where((e) => e.trim().isNotEmpty)
+        .join(' ');
+
     return TeacherClassModel(
       id: json['id'] as int,
       name: (json['name'] ?? '').toString(),
@@ -62,7 +75,7 @@ class TeacherClassModel {
               json['name'] ??
               '-')
           .toString(),
-      rombelName: (rombel?['name'] ?? '-').toString(),
+      rombelName: rombelDisplay.isEmpty ? '-' : rombelDisplay,
 
       // TODO: ganti dengan data dari API saat backend sudah mengirim siswa
       studentsCount: ClassTeacherController.dummyStudentsCount,

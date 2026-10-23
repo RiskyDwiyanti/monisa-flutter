@@ -94,9 +94,9 @@ class PresensiTeacherView extends GetView<PresensiTeacherController> {
                   children: [
                     Text(hari, style: AppText.Header2),
                     const SizedBox(height: 7),
-                    Text(tanggal, style: AppText.SubHeading),
+                    Text(tanggal, style: AppText.SubHeader_SemiBold),
                     const SizedBox(height: 3),
-                    Text(jam, style: AppText.Body1),
+                    Text(jam, style: AppText.Body1_Regular),
                   ],
                 ),
               ),
@@ -183,7 +183,7 @@ class PresensiTeacherView extends GetView<PresensiTeacherController> {
         alignment: Alignment.center,
         child: Text(
           label,
-          style: AppText.Body_Bold.copyWith(
+          style: AppText.SubHeader_SemiBold.copyWith(
             color: selected ? AppColors.white : AppColors.black,
           ),
         ),

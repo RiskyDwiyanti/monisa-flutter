@@ -35,8 +35,8 @@ class ClassTeacherView extends GetView<ClassTeacherController> {
           GestureDetector(
             onTap: () async {
               // TODO: buat route CREATE kelas, refresh setelah kembali
-              // await Get.toNamed(Routes.TEACHER_CLASS_CREATE);
-              // controller.fetchClasses();
+              Get.toNamed(Routes.FORM_ADD_CLASS);
+              controller.fetchClasses();
             },
             child: Container(
               width: 46,
@@ -94,7 +94,7 @@ class ClassTeacherView extends GetView<ClassTeacherController> {
               studentsCount: item.studentsCount,
               bgColor: color,
               onTap: () {
-                Get.toNamed(Routes.KELAS_SELECTED, arguments: {
+                Get.toNamed(Routes.TEACHER_KELAS_SELECTED, arguments: {
                   'id': item.id,
                   'mapel': item.mapel,
                   'kelas': item.rombelName,

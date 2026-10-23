@@ -37,19 +37,19 @@ class DraftTugasCard extends StatelessWidget {
                     children: [
                       Text(
                         draft.judul,
-                        style: AppText.SubHeading,
+                        style: AppText.SubHeader_SemiBold,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         '.',
-                        style: AppText.SubHeading,
+                        style: AppText.SubHeader_SemiBold,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         draft.infoSoal,
-                        style: AppText.Body1,
+                        style: AppText.Body1_Regular,
                       ),
                     ],
                   ),
@@ -64,7 +64,7 @@ class DraftTugasCard extends StatelessWidget {
                                 border: Border.all(color: AppColors.black),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Text(tipe, style: AppText.Body),
+                              child: Text(tipe, style: AppText.Body2),
                             ))
                         .toList(),
                   ),
@@ -87,7 +87,7 @@ class DraftTugasCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       draft.kelas,
-                      style: AppText.Body1.copyWith(
+                      style: AppText.Body1_Regular.copyWith(
                         color: AppColors.white,
                       ),
                       maxLines: 1,

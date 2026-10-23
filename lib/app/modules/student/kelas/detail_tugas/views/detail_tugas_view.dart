@@ -333,7 +333,7 @@ class _DetailTugasBodyState extends State<_DetailTugasBody>
                           )
                         : Text(
                             'Kirim tugas',
-                            style: AppText.SubHeading.copyWith(color: AppColors.white),
+                            style: AppText.SubHeader_SemiBold.copyWith(color: AppColors.white),
                           ),
                   ),
                 ),
@@ -368,7 +368,7 @@ class _DetailTugasBodyState extends State<_DetailTugasBody>
             const SizedBox(width: 8),
             Text(
               'Tambahkan tugas',
-              style: AppText.SubHeading.copyWith(color: AppColors.white),
+              style: AppText.SubHeader_SemiBold.copyWith(color: AppColors.white),
             ),
           ],
         ),
@@ -386,7 +386,7 @@ class _DetailTugasBodyState extends State<_DetailTugasBody>
       children: [
         SvgPicture.asset(icon, width: 23, height: 23),
         const SizedBox(width: 8),
-        Text(label, style: AppText.Body1),
+        Text(label, style: AppText.Body1_Regular),
         const SizedBox(width: 4),
         Text(value, style: AppText.Body1_SemiBold),
       ],

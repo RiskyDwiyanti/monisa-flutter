@@ -111,7 +111,7 @@ class HomeView extends GetView<HomeController> {
                     onTap: () {},
                     child: Text(
                       'Lihat Semua',
-                      style: AppText.Body_Bold.copyWith(
+                      style: AppText.SubHeader_SemiBold.copyWith(
                         decoration: TextDecoration.underline,
                       ),
                     ),
@@ -291,7 +291,7 @@ class HomeView extends GetView<HomeController> {
                 onTap: () {},
                 child: Text(
                   'Selengkapnya',
-                  style: AppText.Body_Bold.copyWith(
+                  style: AppText.SubHeader_SemiBold.copyWith(
                     decoration: TextDecoration.underline,
                   ),
                 ),

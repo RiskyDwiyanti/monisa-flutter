@@ -64,7 +64,7 @@ class StudentAttendanceTile extends StatelessWidget {
             Expanded(
               child: Text(
                 student.name,
-                style: AppText.Body_Bold,
+                style: AppText.SubHeader_SemiBold,
               ),
             ),
             Container(

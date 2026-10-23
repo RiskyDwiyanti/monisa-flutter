@@ -110,7 +110,7 @@ class QrSharingView extends GetView<QrSharingController> {
                         const SizedBox(height: 4),
                         Text(
                           '${controller.kelas} • ${controller.tahunAjaran}',
-                          style: AppText.SubHeading,
+                          style: AppText.SubHeader_SemiBold,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 32),

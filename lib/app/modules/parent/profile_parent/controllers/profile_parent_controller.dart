@@ -46,7 +46,7 @@ class ProfileParentController extends GetxController {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Keluar dari akun anda?", style: AppText.SubHeading),
+                    Text("Keluar dari akun anda?", style: AppText.SubHeader_SemiBold),
                     const SizedBox(height: 12),
                     Text(
                       "Pastikan kamu sudah yakin dengan jawabanmu.",
@@ -66,7 +66,7 @@ class ProfileParentController extends GetxController {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Center(
-                                child: Text("Batal", style: AppText.Body_Bold),
+                                child: Text("Batal", style: AppText.SubHeader_SemiBold),
                               ),
                             ),
                           ),
@@ -92,7 +92,7 @@ class ProfileParentController extends GetxController {
                               child: Center(
                                 child: Text(
                                   "Keluar",
-                                  style: AppText.Body_Bold.copyWith(
+                                  style: AppText.Body1_SemiBold.copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),

@@ -15,15 +15,15 @@ class AppText {
     color: AppColors.black,
   );
 
-  static TextStyle SubHeading = GoogleFonts.manrope(
+  static TextStyle SubHeader_SemiBold = GoogleFonts.manrope(
     fontSize: 17,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
 
-  static TextStyle Body_Bold = GoogleFonts.manrope(
-    fontSize: 15,
-    fontWeight: FontWeight.w600,
+  static TextStyle SubHeader_Regular = GoogleFonts.manrope(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
 
@@ -33,21 +33,15 @@ class AppText {
     color: AppColors.black,
   );
 
-  static TextStyle Body = GoogleFonts.manrope(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColors.black,
-  );
-
-  static TextStyle Body1 = GoogleFonts.manrope(
+  static TextStyle Body1_Regular = GoogleFonts.manrope(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
 
   static TextStyle Body2 = GoogleFonts.manrope(
-    fontSize: 17,
-    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
 

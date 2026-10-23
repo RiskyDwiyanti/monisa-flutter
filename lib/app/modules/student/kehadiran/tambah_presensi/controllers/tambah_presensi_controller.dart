@@ -196,7 +196,7 @@ class TambahPresensiController extends GetxController {
                   children: [
                     Text(
                       "Kirim jawaban?",
-                      style: AppText.SubHeading,
+                      style: AppText.SubHeader_SemiBold,
                     ),
                     const SizedBox(height: 12),
                     Text(
@@ -218,7 +218,7 @@ class TambahPresensiController extends GetxController {
                               child: Center(
                                 child: Text(
                                   "Batal",
-                                  style: AppText.SubHeading
+                                  style: AppText.SubHeader_SemiBold
                                 ),
                               ),
                             ),
@@ -242,7 +242,7 @@ class TambahPresensiController extends GetxController {
                               child: Center(
                                 child: Text(
                                   "Kirim".tr,
-                                  style: AppText.SubHeading.copyWith(
+                                  style: AppText.SubHeader_SemiBold.copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),

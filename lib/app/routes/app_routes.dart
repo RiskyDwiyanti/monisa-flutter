@@ -29,7 +29,25 @@ abstract class Routes {
   static const HOME_PARENT = _Paths.PARENT + _Paths.HOME_PARENT;
   static const DETAIL_PRESENSI =
       _Paths.TEACHER + _Paths.KEHADIRAN + _Paths.DETAIL_PRESENSI;
-  static const KELAS_SELECTED = _Paths.TEACHER + _Paths.KELAS_SELECTED;
+  static const FORM_ADD_CLASS =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.FORM_ADD_CLASS;
+  static const TEACHER_KELAS_SELECTED =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.TEACHER_KELAS_SELECTED;
+  static const MATERIAL_FORM =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.MATERI + _Paths.MATERIAL_FORM;
+  static const ASSIGNMENT_FORM =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.TUGAS + _Paths.ASSIGNMENT_FORM;
+  static const QUIZ_FORM = _Paths.TEACHER + _Paths.KELAS + _Paths.QUIZ_FORM;
+  static const TEACHER_MATERIAL_DETAIL = _Paths.TEACHER +
+      _Paths.KELAS +
+      _Paths.MATERI +
+      _Paths.TEACHER_MATERIAL_DETAIL;
+  static const MATERIAL_DETAIL =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.MATERI + _Paths.MATERIAL_DETAIL;
+  static const ASSIGNMENT_DETAIL =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.ASSIGNMENT_DETAIL;
+  static const ASSIGNMENT_SUBMISSION_DETAIL =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.ASSIGNMENT_SUBMISSION_DETAIL;
 }
 
 abstract class _Paths {
@@ -39,6 +57,8 @@ abstract class _Paths {
   static const TEACHER = '/teacher';
   static const PARENT = '/parent';
   static const KEHADIRAN = '/kehadiran';
+  static const KELAS = '/kelas';
+  static const MATERI = '/materi';
   static const HOME = '/home';
   static const SPLASH = '/splash';
   static const SIGNIN = '/signin';
@@ -64,5 +84,13 @@ abstract class _Paths {
   static const PROFILE_PARENT = '/profile-parent';
   static const HOME_PARENT = '/home-parent';
   static const DETAIL_PRESENSI = '/detail-presensi';
-  static const KELAS_SELECTED = '/kelas-selected';
+  static const FORM_ADD_CLASS = '/form-add-class';
+  static const TEACHER_KELAS_SELECTED = '/teacher-kelas-selected';
+  static const MATERIAL_FORM = '/material-form';
+  static const ASSIGNMENT_FORM = '/assignment-form';
+  static const QUIZ_FORM = '/quiz-form';
+  static const TEACHER_MATERIAL_DETAIL = '/teacher-material-detail';
+  static const MATERIAL_DETAIL = '/material-detail';
+  static const ASSIGNMENT_DETAIL = '/assignment-detail';
+  static const ASSIGNMENT_SUBMISSION_DETAIL = '/assignment-submission-detail';
 }

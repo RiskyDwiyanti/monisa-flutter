@@ -30,7 +30,7 @@ class NilaiSection extends StatelessWidget {
               },
               child: Text(
                 'Selengkapnya',
-                style: AppText.Body.copyWith(
+                style: AppText.SubHeader_SemiBold.copyWith(
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -42,7 +42,7 @@ class NilaiSection extends StatelessWidget {
 
         Text(
           'Cek rekap nilai anak di sini.',
-          style: AppText.SubHeading,
+          style: AppText.SubHeader_Regular,
         ),
 
         const SizedBox(height: 12),
@@ -142,7 +142,7 @@ class NilaiSection extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppText.Body,
+        style: AppText.Body1_Regular,
       ),
     );
   }

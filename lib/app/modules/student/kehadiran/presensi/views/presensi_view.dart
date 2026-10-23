@@ -109,7 +109,7 @@ class PresensiView extends GetView<PresensiController> {
               children: [
                 Text(controller.hariIni, style: AppText.Header2),
                 const SizedBox(height: 2),
-                Text(controller.tanggalHariIni, style: AppText.SubHeading),
+                Text(controller.tanggalHariIni, style: AppText.SubHeader_SemiBold),
                 const SizedBox(height: 4),
                 Text(controller.lokasiKelas, style: AppText.Body2),
                 const SizedBox(height: 6),
@@ -137,7 +137,7 @@ class PresensiView extends GetView<PresensiController> {
                     children: [
                       TextSpan(
                         text: "WIB",
-                        style: AppText.SubHeading,
+                        style: AppText.SubHeader_Regular,
                       ),
                     ],
                   ),
@@ -283,7 +283,7 @@ class PresensiView extends GetView<PresensiController> {
             Text('Pilih Semester', style: AppText.Header2),
             const SizedBox(height: 12),
             ...controller.semesterList.map((s) => ListTile(
-              title: Text(s, style: AppText.Body1),
+              title: Text(s, style: AppText.Body1_SemiBold),
               trailing: Obx(() => controller.selectedSemester.value == s
                   ? const Icon(Icons.check, color: AppColors.Tangerine)
                   : const SizedBox()),

@@ -102,7 +102,7 @@ class HomeTeacherView extends GetView<HomeTeacherController> {
         const SizedBox(height: 4),
         Text(
           'Lihat di mana anda mengajar hari ini.',
-          style: AppText.SubHeading,
+          style: AppText.SubHeader_Regular,
         ),
         const SizedBox(height: 14),
         Container(
@@ -164,7 +164,7 @@ class HomeTeacherView extends GetView<HomeTeacherController> {
               const SizedBox(height: 4),
               Text(
                 'Mari selesaikan dan kirim draf tugas anda!',
-                style: AppText.SubHeading,
+                style: AppText.SubHeader_Regular,
               ),
             ],
           ),

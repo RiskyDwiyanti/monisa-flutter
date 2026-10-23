@@ -24,20 +24,20 @@ class TaskListSection extends StatelessWidget {
               },
               child: Text(
                 'Lihat semua',
-                style: AppText.Body1.copyWith(decoration: TextDecoration.underline),
+                style: AppText.SubHeader_SemiBold.copyWith(decoration: TextDecoration.underline),
               ),
             ),
           ],
         ),
         const SizedBox(height: 4),
-        Text('Monitor pekerjaan anak anda.', style: AppText.SubHeading),
+        Text('Monitor pekerjaan anak anda.', style: AppText.SubHeader_Regular),
         const SizedBox(height: 12),
         SizedBox(
           height: 190,
           child: Obx(() {
             final tugas = controller.tugasList;
             if (tugas.isEmpty) {
-              return Center(child: Text('Belum ada tugas.', style: AppText.Body));
+              return Center(child: Text('Belum ada tugas.', style: AppText.SubHeader_Regular));
             }
             return ListView.builder(
               scrollDirection: Axis.horizontal,

@@ -165,7 +165,7 @@ class Calendar extends StatelessWidget {
       child: Center(
         child: Text(
           label,
-          style: AppText.SubHeading.copyWith(
+          style: AppText.SubHeader_Regular.copyWith(
             color: isWeekend
                 ? AppColors.Blush
                 : AppColors.black,

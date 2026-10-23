@@ -58,7 +58,7 @@ class SigninView extends GetView<SigninController> {
                     // Subtitle
                     Text(
                       'Masukkan role, e-mail atau nomor handphone, dan password untuk melanjutkan.',
-                      style: AppText.Body,
+                      style: AppText.SubHeader_Regular,
                     ),
 
                     const SizedBox(height: 32,),
@@ -132,7 +132,7 @@ Widget _label(String text) => Padding(
   padding: const EdgeInsets.only(bottom: 14),
   child: Text(
     text,
-    style: AppText.Body_Bold,
+    style: AppText.SubHeader_SemiBold,
   ),
 );
 
@@ -148,7 +148,7 @@ Widget _input(TextEditingController controller, String hint) {
 InputDecoration _decoration({String? hint}) {
   return InputDecoration(
     hintText: hint,
-    hintStyle: AppText.Body,
+    hintStyle: AppText.SubHeader_Regular,
     contentPadding: const EdgeInsets.symmetric(
       horizontal: 18,
       vertical: 12,

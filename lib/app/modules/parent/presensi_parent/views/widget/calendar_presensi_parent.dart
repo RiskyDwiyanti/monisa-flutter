@@ -187,7 +187,7 @@ class _CalendarState extends State<CalendarPresensiParent> {
       child: Center(
         child: Text(
           label,
-          style: AppText.SubHeading.copyWith(
+          style: AppText.SubHeader_Regular.copyWith(
             color: isWeekend ? AppColors.Blush : AppColors.black,
           ),
         ),
