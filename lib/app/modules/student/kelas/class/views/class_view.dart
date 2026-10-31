@@ -76,38 +76,87 @@ class ClassView extends GetView<ClassController> {
   }
 
   Widget _buildKelasList() {
-    return Obx(() => ListView.separated(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-      itemCount: controller.kelasList.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 16),
-      itemBuilder: (context, index) {
-        final item = controller.kelasList[index];
-        return KelasCard(
-          mataPelajaran: item.mapel,
-          kelas: item.kelas,
-          tahunAjaran: item.tahunAjaran,
-          namaGuru: item.namaGuru,
-          fotoGuru: item.fotoGuru,
-          bgColor: item.bgColor,
-          onTap: () {
-            Get.toNamed(Routes.KELAS_SELECTED, arguments: {
-              'mapel': item.mapel,
-              'kelas': item.kelas,
-              'tahunAjaran': item.tahunAjaran,
-              'bgColor': item.bgColor,
-            });
-          },
-          onQrTap: () {
-            Get.toNamed(Routes.QR_SHARING, arguments: {
-              'mapel': item.mapel,
-              'kelas': item.kelas,
-              'tahunAjaran': item.tahunAjaran,
-              'bgColor': item.bgColor,
-            });
-          },
+    return Obx(() {
+      if (controller.isLoading.value && controller.kelasList.isEmpty) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (controller.errorMessage.value != null && controller.kelasList.isEmpty) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  controller.errorMessage.value!,
+                  textAlign: TextAlign.center,
+                  style: AppText.Body2,
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton(
+                  onPressed: controller.fetchKelas,
+                  child: Text('Coba lagi', style: AppText.Body1_SemiBold),
+                ),
+              ],
+            ),
+          ),
         );
-      },
-    ));
+      }
+
+      if (controller.kelasList.isEmpty) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Text(
+              'Kamu belum bergabung dengan kelas apa pun. Pindai kode QR dari gurumu untuk bergabung.',
+              textAlign: TextAlign.center,
+              style: AppText.Body2,
+            ),
+          ),
+        );
+      }
+
+      return RefreshIndicator(
+        onRefresh: controller.fetchKelas,
+        child: ListView.separated(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          itemCount: controller.kelasList.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 16),
+          itemBuilder: (context, index) {
+            final item = controller.kelasList[index];
+            return KelasCard(
+              mataPelajaran: item.mapel,
+              kelas: item.kelas,
+              tahunAjaran: item.tahunAjaran,
+              namaGuru: item.namaGuru,
+              fotoGuru: item.fotoGuru,
+              bgColor: item.bgColor,
+              avatarColor: item.avatarColor,
+              onTap: () {
+                Get.toNamed(Routes.KELAS_SELECTED, arguments: {
+                  'id': item.id,
+                  'mapel': item.mapel,
+                  'kelas': item.kelas,
+                  'tahunAjaran': item.tahunAjaran,
+                  'bgColor': item.bgColor,
+                });
+              },
+              // onQrTap: () {
+              //   Get.toNamed(Routes.QR_SHARING, arguments: {
+              //     'id': item.id,
+              //     'mapel': item.mapel,
+              //     'kelas': item.kelas,
+              //     'tahunAjaran': item.tahunAjaran,
+              //     'bgColor': item.bgColor,
+              //   });
+              // },
+            );
+          },
+        ),
+      );
+    });
   }
 
 }

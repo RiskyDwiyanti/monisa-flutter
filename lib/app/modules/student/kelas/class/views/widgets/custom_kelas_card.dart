@@ -8,10 +8,11 @@ class KelasCard extends StatelessWidget {
   final String kelas;
   final String tahunAjaran;
   final String namaGuru;
-  final String fotoGuru;
+  final String? fotoGuru;
   final Color bgColor;
   final VoidCallback? onTap;
   final VoidCallback? onQrTap;
+  final Color? avatarColor;
 
   const KelasCard({
     super.key,
@@ -19,10 +20,11 @@ class KelasCard extends StatelessWidget {
     required this.kelas,
     required this.tahunAjaran,
     required this.namaGuru,
-    required this.fotoGuru,
+    this.fotoGuru,
     required this.bgColor,
     this.onTap,
     this.onQrTap,
+    this.avatarColor,
   });
 
   String get _spiralAsset {
@@ -107,33 +109,28 @@ class KelasCard extends StatelessWidget {
                                         Text(
                                           '$kelas • $tahunAjaran',
                                           style:
-                                              AppText.Body2.copyWith(color: _textColor),
+                                              AppText.Body1_SemiBold.copyWith(color: _textColor),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  GestureDetector(
-                                    onTap: onQrTap,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/qr-code_icon.svg',
-                                      width: 32,
-                                      height: 32,
-                                      color: _textColor,
-                                    ),
-                                  ),
+                                  // GestureDetector(
+                                  //   onTap: onQrTap,
+                                  //   child: SvgPicture.asset(
+                                  //     'assets/icons/qr-code_icon.svg',
+                                  //     width: 32,
+                                  //     height: 32,
+                                  //     color: _textColor,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                               const SizedBox(height: 32),
                               Row(
                                 children: [
-                                  CircleAvatar(
-                                    radius: 16,
-                                    backgroundImage: AssetImage(fotoGuru),
-                                  ),
+                                  _buildTeacherAvatar(),
                                   const SizedBox(width: 8),
-                                  Text(namaGuru,
-                                      style: AppText.Body1_SemiBold
-                                          .copyWith(color: _textColor)),
+                                  Text(namaGuru, style: AppText.SubHeader_SemiBold.copyWith(color: _textColor)),
                                 ],
                               ),
                             ],
@@ -148,6 +145,30 @@ class KelasCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTeacherAvatar() {
+    final photo = fotoGuru ?? '';
+
+    ImageProvider? image;
+    if (photo.startsWith('http')) {
+      image = NetworkImage(photo);
+    } else if (photo.isNotEmpty) {
+      image = AssetImage(photo); // tetap mendukung aset lokal
+    }
+
+    return CircleAvatar(
+      radius: 16,
+      backgroundColor: avatarColor ?? AppColors.white,
+      backgroundImage: image,
+      onBackgroundImageError: image == null ? null : (_, __) {},
+      child: image == null
+          ? Text(
+              namaGuru.isNotEmpty ? namaGuru[0].toUpperCase() : '?',
+              style: AppText.Body1_SemiBold.copyWith(color: AppColors.white),
+            )
+          : null,
     );
   }
 

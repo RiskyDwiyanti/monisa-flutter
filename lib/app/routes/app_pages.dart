@@ -28,6 +28,8 @@ import '../modules/student/kelas/detail_tugas/bindings/detail_tugas_binding.dart
 import '../modules/student/kelas/detail_tugas/views/detail_tugas_view.dart';
 import '../modules/student/kelas/kelas_selected/bindings/kelas_selected_binding.dart';
 import '../modules/student/kelas/kelas_selected/views/kelas_selected_view.dart';
+import '../modules/student/kelas/materi/materi_selected/bindings/materi_selected_binding.dart';
+import '../modules/student/kelas/materi/materi_selected/views/materi_selected_view.dart';
 import '../modules/student/kelas/qr_sharing/bindings/qr_sharing_binding.dart';
 import '../modules/student/kelas/qr_sharing/views/qr_sharing_view.dart';
 import '../modules/student/kelas/scan_qr/bindings/scan_qr_binding.dart';
@@ -44,8 +46,8 @@ import '../modules/teacher/kehadiran/detail_presensi/bindings/detail_presensi_bi
 import '../modules/teacher/kehadiran/detail_presensi/views/detail_presensi_view.dart';
 import '../modules/teacher/kehadiran/presensi_teacher/bindings/presensi_teacher_binding.dart';
 import '../modules/teacher/kehadiran/presensi_teacher/views/presensi_teacher_view.dart';
-import '../modules/teacher/kelas/tugas/assignment_submission_detail/bindings/assignment_submission_detail_binding.dart';
-import '../modules/teacher/kelas/tugas/assignment_submission_detail/views/assignment_submission_detail_view.dart';
+import '../modules/teacher/kelas/class_student_detail/bindings/class_student_detail_binding.dart';
+import '../modules/teacher/kelas/class_student_detail/views/class_student_detail_view.dart';
 import '../modules/teacher/kelas/class_teacher/bindings/class_teacher_binding.dart';
 import '../modules/teacher/kelas/class_teacher/views/class_teacher_view.dart';
 import '../modules/teacher/kelas/form_add_class/bindings/form_add_class_binding.dart';
@@ -56,12 +58,20 @@ import '../modules/teacher/kelas/materi/material_form/bindings/material_form_bin
 import '../modules/teacher/kelas/materi/material_form/views/material_form_view.dart';
 import '../modules/teacher/kelas/quiz/quiz_form/bindings/quiz_form_binding.dart';
 import '../modules/teacher/kelas/quiz/quiz_form/views/quiz_form_view.dart';
+import '../modules/teacher/kelas/quiz/quiz_submission_detail/bindings/quiz_submission_detail_binding.dart';
+import '../modules/teacher/kelas/quiz/quiz_submission_detail/views/quiz_submission_detail_view.dart';
 import '../modules/teacher/kelas/teacher_kelas_selected/bindings/teacher_kelas_selected_binding.dart';
 import '../modules/teacher/kelas/teacher_kelas_selected/views/teacher_kelas_selected_view.dart';
+import '../modules/teacher/kelas/teacher_qr_sharing/bindings/teacher_qr_sharing_binding.dart';
+import '../modules/teacher/kelas/teacher_qr_sharing/views/teacher_qr_sharing_view.dart';
+import '../modules/teacher/kelas/tentang_kelas/bindings/tentang_kelas_binding.dart';
+import '../modules/teacher/kelas/tentang_kelas/views/tentang_kelas_view.dart';
 import '../modules/teacher/kelas/tugas/assignment_detail/bindings/assignment_detail_binding.dart';
 import '../modules/teacher/kelas/tugas/assignment_detail/views/assignment_detail_view.dart';
 import '../modules/teacher/kelas/tugas/assignment_form/bindings/assignment_form_binding.dart';
 import '../modules/teacher/kelas/tugas/assignment_form/views/assignment_form_view.dart';
+import '../modules/teacher/kelas/tugas/assignment_submission_detail/bindings/assignment_submission_detail_binding.dart';
+import '../modules/teacher/kelas/tugas/assignment_submission_detail/views/assignment_submission_detail_view.dart';
 import '../modules/teacher/main/main_teacher/bindings/main_teacher_binding.dart';
 import '../modules/teacher/main/main_teacher/views/main_teacher_view.dart';
 import '../modules/teacher/profile/profile_teacher/bindings/profile_teacher_binding.dart';
@@ -239,6 +249,31 @@ class AppPages {
       name: Routes.ASSIGNMENT_SUBMISSION_DETAIL,
       page: () => const AssignmentSubmissionDetailView(),
       binding: AssignmentSubmissionDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.QUIZ_SUBMISSION_DETAIL,
+      page: () => const QuizSubmissionDetailView(),
+      binding: QuizSubmissionDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.TENTANG_KELAS,
+      page: () => const TentangKelasView(),
+      binding: TentangKelasBinding(),
+    ),
+    GetPage(
+      name: Routes.CLASS_STUDENT_DETAIL,
+      page: () => const ClassStudentDetailView(),
+      binding: ClassStudentDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.TEACHER_QR_SHARING,
+      page: () => const TeacherQrSharingView(),
+      binding: TeacherQrSharingBinding(),
+    ),
+    GetPage(
+      name: Routes.MATERI_SELECTED,
+      page: () => const MateriSelectedView(),
+      binding: MateriSelectedBinding(),
     ),
   ];
 }

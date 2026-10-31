@@ -42,7 +42,7 @@ class MateriItem {
     switch (type) {
       case 'assignment':
         return 'assets/icons/pen_icon.svg';
-      case 'quiz':
+      case 'quizzes':
         return 'assets/icons/pen_icon.svg';
       case 'material':
       default:
@@ -134,6 +134,11 @@ class TeacherKelasSelectedController extends GetxController {
   }
 
   void onMateriTap(MateriItem item) {
+    // print('========== DEBUG MATERI TAP ==========');
+    // print('title: ${item.title}');
+    // print('id   : ${item.id}');
+    // print('type : ${item.type}');
+    // print('======================================');
     switch (item.type) {
       case 'material':
         Get.toNamed(Routes.MATERIAL_DETAIL, arguments: {
@@ -144,17 +149,25 @@ class TeacherKelasSelectedController extends GetxController {
         });
         break;
       case 'assignment':
+      case 'quizzes':
         Get.toNamed(Routes.ASSIGNMENT_DETAIL, arguments: {
           'classId': classId,
           'assignmentId': item.id,
+          'type': item.type,
         })?.then((result) {
           if (result == true) fetchClassContents();
         });
         break;
-      case 'quiz':
-        // TODO: halaman detail kuis
-        break;
     }
+  }
+
+  void onInfoTap() {
+    Get.toNamed(Routes.TENTANG_KELAS, arguments: {'classId': classId});
+  }
+
+  Future<void> onRefreshTap() async {
+    if (isLoading.value) return; // cegah request dobel kalau diketuk berulang
+    await fetchClassContents();
   }
 
   // Dipanggil dari masing-masing opsi di bottom sheet

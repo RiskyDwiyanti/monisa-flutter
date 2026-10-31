@@ -103,7 +103,7 @@ class ClassTeacherView extends GetView<ClassTeacherController> {
                 });
               },
               onQrTap: () {
-                Get.toNamed(Routes.QR_SHARING, arguments: {
+                Get.toNamed(Routes.TEACHER_QR_SHARING, arguments: {
                   'mapel': item.mapel,
                   'kelas': item.rombelName,
                   'tahunAjaran': item.tahunAjaran,

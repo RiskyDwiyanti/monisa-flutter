@@ -159,4 +159,83 @@ class TeacherClassService {
       };
     }
   }
+
+  Future<Map<String, dynamic>> getAbout({required int classId,}) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+            '$baseUrl/teacher/classes/$classId/about'),
+        headers: await _headers(),
+      );
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat info kelas.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> getStudents({required int classId,}) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+            '$baseUrl/teacher/classes/$classId/members'),
+        headers: await _headers(),
+      );
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat daftar siswa.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> getStudentDetail({required int classId, required int studentId}) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+            '$baseUrl/teacher/classes/$classId/students/$studentId/detail'),
+        headers: await _headers(),
+      );
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat info siswa.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+
 }

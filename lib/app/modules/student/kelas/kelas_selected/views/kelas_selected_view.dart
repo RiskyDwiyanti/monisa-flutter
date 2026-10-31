@@ -43,8 +43,8 @@ class KelasSelectedView extends GetView<KelasSelectedController> {
             },
             child: SvgPicture.asset(
               'assets/icons/info_icon.svg',
-              width: 23,
-              height: 23,
+              width: 34,
+              height: 34,
               color: AppColors.black,
             ),
           ),    
@@ -54,15 +54,60 @@ class KelasSelectedView extends GetView<KelasSelectedController> {
   }
 
   Widget _buildContent() {
-    return Obx(() => ListView.separated(
+    return Obx(() {
+      if (controller.isLoading.value && controller.materiGroups.isEmpty) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (controller.errorMessage.value != null && controller.materiGroups.isEmpty) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  controller.errorMessage.value!,
+                  textAlign: TextAlign.center,
+                  style: AppText.Body2,
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton(
+                  onPressed: controller.fetchContents,
+                  child: Text('Coba lagi', style: AppText.Body1_SemiBold),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+
+      if (controller.materiGroups.isEmpty) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Text(
+              'Belum ada materi, tugas, atau kuis di kelas ini.',
+              textAlign: TextAlign.center,
+              style: AppText.Body2,
+            ),
+          ),
+        );
+      }
+
+      return RefreshIndicator(
+        onRefresh: controller.fetchContents,
+        child: ListView.separated(
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           itemCount: controller.materiGroups.length,
           separatorBuilder: (_, __) => const SizedBox(height: 16),
           itemBuilder: (context, index) {
-            final group = controller.materiGroups[index];
-            return _buildMateriGroupCard(group);
+            return _buildMateriGroupCard(controller.materiGroups[index]);
           },
-        ));
+        ),
+      );
+    });
   }
 
   Widget _buildMateriGroupCard(MateriGroup group) {
@@ -77,16 +122,23 @@ class KelasSelectedView extends GetView<KelasSelectedController> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            decoration: const BoxDecoration(
-              color: AppColors.Blush,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: controller.bgColor,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
+              ),
+              border: const Border(
+                bottom: BorderSide(color: AppColors.black, width: 1),
               ),
             ),
             child: Text(
               group.title,
-              style: AppText.Header2.copyWith(color: AppColors.white),
+              style: AppText.Header2.copyWith(
+                color: controller.bgColor == AppColors.Blush
+                    ? AppColors.white
+                    : AppColors.black,
+              ),
             ),
           ),
 

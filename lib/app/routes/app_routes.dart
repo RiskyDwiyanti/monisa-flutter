@@ -48,6 +48,18 @@ abstract class Routes {
       _Paths.TEACHER + _Paths.KELAS + _Paths.ASSIGNMENT_DETAIL;
   static const ASSIGNMENT_SUBMISSION_DETAIL =
       _Paths.TEACHER + _Paths.KELAS + _Paths.ASSIGNMENT_SUBMISSION_DETAIL;
+  static const QUIZ_SUBMISSION_DETAIL =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.QUIZ_SUBMISSION_DETAIL;
+  static const TENTANG_KELAS =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.TENTANG_KELAS;
+  static const CLASS_STUDENT_DETAIL =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.CLASS_STUDENT_DETAIL;
+  static const TEACHER_QR_SHARING =
+      _Paths.TEACHER + _Paths.KELAS + _Paths.TEACHER_QR_SHARING;
+  static const DETAIL_MATERI =
+      _Paths.STUDENT + _Paths.KELAS + _Paths.DETAIL_MATERI;
+  static const MATERI_SELECTED =
+      _Paths.STUDENT + _Paths.KELAS + _Paths.MATERI_SELECTED;
 }
 
 abstract class _Paths {
@@ -93,4 +105,10 @@ abstract class _Paths {
   static const MATERIAL_DETAIL = '/material-detail';
   static const ASSIGNMENT_DETAIL = '/assignment-detail';
   static const ASSIGNMENT_SUBMISSION_DETAIL = '/assignment-submission-detail';
+  static const QUIZ_SUBMISSION_DETAIL = '/quiz-submission-detail';
+  static const TENTANG_KELAS = '/tentang-kelas';
+  static const CLASS_STUDENT_DETAIL = '/class-student-detail';
+  static const TEACHER_QR_SHARING = '/teacher-qr-sharing';
+  static const DETAIL_MATERI = '/detail-materi';
+  static const MATERI_SELECTED = '/materi-selected';
 }

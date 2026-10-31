@@ -9,6 +9,15 @@ import '../controllers/assignment_detail_controller.dart';
 
 class AssignmentDetailView extends GetView<AssignmentDetailController> {
   const AssignmentDetailView({super.key});
+  int get _maxScore {
+    if (controller.type == 'quizzes') {
+      final score = controller.quizDetail.value?['total_score'];
+      return int.tryParse(score?.toString() ?? '') ?? 100;
+    }
+
+    return controller.assignment.value?.maxScore ?? 100;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +28,15 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
             _buildHeader(),
             Expanded(
               child: Obx(() {
-                if (controller.isLoading.value && controller.assignment.value == null) {
+                final isQuiz = controller.type == 'quizzes';
+
+                final hasData = isQuiz ? controller.quizDetail.value != null : controller.assignment.value != null;
+
+                if (controller.isLoading.value && !hasData) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                if (controller.errorMessage.value != null &&
-                    controller.assignment.value == null) {
+                if (controller.errorMessage.value != null && !hasData) {
                   return Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -37,14 +49,16 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
                   );
                 }
 
-                final assignment = controller.assignment.value;
-                if (assignment == null) return const SizedBox.shrink();
+                if (!hasData) return const SizedBox.shrink();
 
                 return SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   child: Column(
                     children: [
-                      _buildCard(context, assignment),
+                      if (isQuiz)
+                        _buildQuizCard(context, controller.quizDetail.value)
+                      else
+                        _buildCard(context, controller.assignment.value),
                       const SizedBox(height: 20),
                       _buildTabsAndList(),
                     ],
@@ -74,6 +88,7 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
     );
   }
 
+  // ============== CARD ASSIGNMENT ==============
   Widget _buildCard(BuildContext context, assignment) {
     return Container(
       width: double.infinity,
@@ -226,6 +241,184 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
                     ),
                     child: Text('Hapus tugas',
                         style: AppText.Body1_SemiBold.copyWith(color: AppColors.black)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ============== CARD QUIZ ==============
+  Widget _buildQuizCard(BuildContext context, assignment) {
+    final quiz = controller.quizDetail.value!;
+
+    final title = quiz['title']?.toString() ?? '-';
+    final description = quiz['description']?.toString() ?? '';
+    final isPublished = quiz['is_published'] == true;
+    final createdAt = quiz['created_at']?.toString();
+
+    DateTime? createdDate;
+    if (createdAt != null) {
+      createdDate = DateTime.tryParse(createdAt)?.toLocal();
+    }
+
+    final deadlineString = quiz['deadline']?.toString();
+    final deadline = deadlineString == null
+        ? null
+        : DateTime.tryParse(deadlineString)?.toLocal();
+
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.black, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(title, style: AppText.Header2),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: AppColors.black, width: 1),
+                  ),
+                  child: Text(
+                    isPublished ? 'Ditugaskan' : 'Draf',
+                    style: AppText.Body2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1, color: AppColors.black),
+
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 16,
+                      backgroundColor: AppColors.black.withOpacity(0.05),
+                      child: const Icon(Icons.person, size: 18),
+                    ),
+                    const SizedBox(width: 10),
+                    Text('Anda', style: AppText.Body1_SemiBold),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  description.isEmpty
+                      ? 'Tidak ada deskripsi.'
+                      : description,
+                  style: AppText.Body2,
+                ),
+              ],
+            ),
+          ),
+
+          _buildDashedDivider(),
+
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (createdDate != null)
+                  Row(
+                    children: [
+                      const Icon(Icons.calendar_today_outlined, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Diunggah pada: ${_formatDeadline(createdDate)}',
+                          style: AppText.Body2,
+                        ),
+                      ),
+                    ],
+                  ),
+                if (deadline != null) ...[
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(Icons.hourglass_bottom, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Tenggat: ${_formatDeadline(deadline)}',
+                          style: AppText.Body2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+
+          const Divider(height: 1, color: AppColors.black),
+
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: controller.onEditTap,
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      side: const BorderSide(
+                        color: AppColors.black,
+                        width: 1,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: Text(
+                      'Edit kuis',
+                      style: AppText.Body1_SemiBold.copyWith(
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => showAssignmentDeleteConfirmDialog(context, controller),
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      side: const BorderSide(
+                        color: AppColors.black,
+                        width: 1,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: Text(
+                      'Hapus kuis',
+                      style: AppText.Body1_SemiBold.copyWith(
+                        color: AppColors.black,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -424,7 +617,7 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
                   child: Text(s.studentName, style: AppText.Body1_SemiBold),
                 ),
                 Text(
-                  '${s.score ?? '-'}/${controller.assignment.value?.maxScore ?? 100}',
+                  '${s.score ?? '-'}/${_maxScore}',
                   style: AppText.Body2,
                 ),
               ],
@@ -468,7 +661,7 @@ class AssignmentDetailView extends GetView<AssignmentDetailController> {
               const SizedBox(width: 12),
               Expanded(child: Text(s.name, style: AppText.Body1_SemiBold)),
               Text(
-                '-/${controller.assignment.value?.maxScore ?? 100}',
+                '-/$_maxScore',
                 style: AppText.Body2,
               ),
             ],

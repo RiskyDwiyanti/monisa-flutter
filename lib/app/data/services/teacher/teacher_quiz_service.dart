@@ -309,4 +309,69 @@ class TeacherQuizService {
       };
     }
   }
+
+  // Daftar pengerjaan siswa pada satu kuis
+  Future<Map<String, dynamic>> getQuizAttempts({
+    required int classId,
+    required int quizId,
+  }) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+          '$baseUrl/teacher/classes/$classId/quizzes/$quizId/attempts',
+        ),
+        headers: await _headers(),
+      );
+
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat pengerjaan kuis.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+
+
+  // Show: detail attempt siswa (untuk mode review)
+  Future<Map<String, dynamic>> getQuizAttemptDetail({
+    required int classId,
+    required int quizId,
+    required int attemptId,
+  }) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+            '$baseUrl/teacher/classes/$classId/quizzes/$quizId/attempts/$attemptId'),
+        headers: await _headers(),
+      );
+      final data = jsonDecode(response.body);
+
+      return {
+        'statusCode': response.statusCode,
+        'success': data['success'] == true,
+        'message': data['message'] ?? 'Gagal memuat pengumpulan siswa.',
+        'data': data['data'],
+        'errors': data['errors'],
+      };
+    } catch (e) {
+      return {
+        'statusCode': 0,
+        'success': false,
+        'message': 'Tidak dapat terhubung ke server.',
+        'error': e.toString(),
+      };
+    }
+  }
+  
 }

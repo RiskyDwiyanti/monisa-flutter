@@ -30,23 +30,64 @@ class TeacherKelasSelectedView extends GetView<TeacherKelasSelectedController> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 52, 20, 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: () => Get.back(),
-            child: Icon(Icons.arrow_back, color: AppColors.black),
+            child: const Icon(Icons.arrow_back, size: 26, color: AppColors.black),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              controller.mapel,
+              style: AppText.Header1,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           const SizedBox(width: 12),
-          Expanded(child: Text(controller.mapel, style: AppText.Header1)),
-          GestureDetector(
-            onTap: () {
-              // TODO: info kelas
-            },
-            child: SvgPicture.asset(
-              'assets/icons/info_icon.svg',
-              width: 23,
-              height: 23,
-              color: AppColors.black,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(color: AppColors.black, width: 1),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Refresh: berubah jadi spinner kecil selama memuat
+                GestureDetector(
+                  onTap: controller.onRefreshTap,
+                  child: Obx(() => controller.isLoading.value
+                      ? const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppColors.black,
+                            ),
+                          ),
+                        )
+                      : SvgPicture.asset(
+                        'assets/icons/refresh_icon.svg',
+                        width: 18.71,
+                        height: 18.75,
+                        color: AppColors.black,
+                      )
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: controller.onInfoTap,
+                  child: SvgPicture.asset(
+                    'assets/icons/info_icon.svg',
+                    width: 22.67,
+                    height: 22.67,
+                    color: AppColors.black,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
